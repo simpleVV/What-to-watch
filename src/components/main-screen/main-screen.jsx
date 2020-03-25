@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import MovieCardTemplate from '../small-movie-card/small-movie-card.jsx';
+import MovieList from '../movie-list/movie-list.jsx';
 
 const MainScreen = (props) => {
-  const {moviesTitle} = props;
+  const {movies} = props;
 
   return <main>
     <section className="movie-card">
@@ -99,9 +98,9 @@ const MainScreen = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {moviesTitle.map((title, i) => <MovieCardTemplate key = {title + i} title = {title}/>)}
-        </div>
+        <MovieList
+          movies = {movies}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -126,7 +125,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  moviesTitle: PropTypes.arrayOf(PropTypes.string)
+  movies: MovieList.propTypes.movies,
 };
 
 export default MainScreen;

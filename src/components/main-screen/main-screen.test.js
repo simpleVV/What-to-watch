@@ -3,11 +3,27 @@ import renderer from 'react-test-renderer';
 import MainScreen from './main-screen.jsx';
 
 describe(`The component is rendered correctly`, () => {
-  it(`Main screen correctly renders with transferred movies title`, () => {
-    const titles = [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`];
+  it(`Main screen correctly renders with transferred mock-movies title`, () => {
+    const mockMovies = [
+      {
+        genre: `Comedies`,
+        title: `Johnny English`,
+        image: `img/johnny-english.jpg`
+      },
+      {
+        genre: `Crime`,
+        title: `Snatch`,
+        image: `img/snatch.jpg`
+      },
+      {
+        genre: `Crime`,
+        title: `Pulp Fiction`,
+        image: `img/pulp-fiction.jpg`
+      }
+    ];
     const mainScreen = renderer
     .create(<MainScreen
-      moviesTitle = {titles}
+      movies = {mockMovies}
     />)
     .toJSON();
 
