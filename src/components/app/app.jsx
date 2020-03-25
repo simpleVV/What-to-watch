@@ -1,17 +1,16 @@
 import React from 'react';
 import MainScreen from '../main-screen/main-screen.jsx';
-import PropTypes from 'prop-types';
 
 const App = (props) => {
-  const {moviesTitle} = props;
+  const {movies} = props;
 
   return <MainScreen
-    moviesTitle = {moviesTitle}
+    movies = {movies}
   />;
 };
 
 App.propTypes = {
-  moviesTitle: PropTypes.arrayOf(PropTypes.string)
+  movies: MainScreen.propTypes.movies
 };
 
 export default App;

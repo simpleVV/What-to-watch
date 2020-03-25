@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import MovieList from './movie-list.jsx';
 
 describe(`The component is rendered correctly`, () => {
-  it(`App correctly renders with transferred data`, () => {
+  it(`Movie list correctly renders with transferred mock-movies`, () => {
     const mockMovies = [
       {
         genre: `Comedies`,
@@ -19,14 +19,20 @@ describe(`The component is rendered correctly`, () => {
         genre: `Crime`,
         title: `Pulp Fiction`,
         image: `img/pulp-fiction.jpg`
+      },
+      {
+        genre: `Dramas`,
+        title: `Macbeth`,
+        image: `img/macbeth.jpg`
       }
     ];
-    const app = renderer
-    .create(<App
+
+    const movieList = renderer
+    .create(<MovieList
       movies = {mockMovies}
     />)
-      .toJSON();
+    .toJSON();
 
-    expect(app).toMatchSnapshot();
+    expect(movieList).toMatchSnapshot();
   });
 });

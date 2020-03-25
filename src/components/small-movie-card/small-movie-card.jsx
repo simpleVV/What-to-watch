@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieCardTemplate = (props) => {
-  const {title, onTitleClick} = props;
-  return <article className="small-movie-card catalog__movies-card">
+const MovieCardTemplate = ({movie, onMovieCardEnter, onMovieCardLeave, onTitleClick}) => {
+  const {title, image} = movie;
+  return <article className="small-movie-card catalog__movies-card" onMouseEnter={(evt) => onMovieCardEnter(movie, evt)}
+    onMouseLeave={(evt) => onMovieCardLeave(evt)}>
     <div className="small-movie-card__image">
-      <img src="img/bohemian-rhapsody.jpg" alt={title} width="280" height="175" />
+      <img src={image} alt={title} width="280" height="175" />
     </div>
     <h3 className="small-movie-card__title" onClick={onTitleClick}>
       <a className="small-movie-card__link" href="movie-page.html">{title}</a>
@@ -14,8 +15,15 @@ const MovieCardTemplate = (props) => {
 };
 
 MovieCardTemplate.propTypes = {
-  title: PropTypes.string,
-  onTitleClick: PropTypes.func
+  movie: PropTypes.shape(
+      {
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string
+      }
+  ),
+  onTitleClick: PropTypes.func,
+  onMovieCardEnter: PropTypes.func,
+  onMovieCardLeave: PropTypes.func
 };
 
 export default MovieCardTemplate;

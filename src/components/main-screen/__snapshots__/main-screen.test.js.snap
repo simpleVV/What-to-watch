@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The component is rendered correctly Main screen correctly renders with transferred movies title 1`] = `
+exports[`The component is rendered correctly Main screen correctly renders with transferred mock-movies title 1`] = `
 <main>
   <section
     className="movie-card"
@@ -259,97 +259,82 @@ exports[`The component is rendered correctly Main screen correctly renders with 
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Johnny English"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/johnny-english.jpg"
               width="280"
             />
           </div>
           <h3
             className="small-movie-card__title"
+            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              Johnny English
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Bohemian Rhapsody"
+              alt="Snatch"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/snatch.jpg"
               width="280"
             />
           </div>
           <h3
             className="small-movie-card__title"
+            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Bohemian Rhapsody
+              Snatch
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Macbeth"
+              alt="Pulp Fiction"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/pulp-fiction.jpg"
               width="280"
             />
           </div>
           <h3
             className="small-movie-card__title"
+            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
+              Pulp Fiction
             </a>
           </h3>
         </article>
