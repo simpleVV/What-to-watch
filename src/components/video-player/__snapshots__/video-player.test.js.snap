@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Video player correctly renders with transferred mock data 1`] = `
+<div
+  className="small-movie-card__image"
+>
+  <video
+    style={
+      Object {
+        "height": "100%",
+        "objectFit": "fill",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;

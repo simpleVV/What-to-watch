@@ -12,11 +12,14 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Johnny English"
-        height="175"
-        src="img/johnny-english.jpg"
-        width="280"
+      <video
+        style={
+          Object {
+            "height": "100%",
+            "objectFit": "fill",
+            "width": "100%",
+          }
+        }
       />
     </div>
     <h3
@@ -39,11 +42,14 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Snatch"
-        height="175"
-        src="img/snatch.jpg"
-        width="280"
+      <video
+        style={
+          Object {
+            "height": "100%",
+            "objectFit": "fill",
+            "width": "100%",
+          }
+        }
       />
     </div>
     <h3
@@ -66,11 +72,14 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Pulp Fiction"
-        height="175"
-        src="img/pulp-fiction.jpg"
-        width="280"
+      <video
+        style={
+          Object {
+            "height": "100%",
+            "objectFit": "fill",
+            "width": "100%",
+          }
+        }
       />
     </div>
     <h3
@@ -93,11 +102,14 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Macbeth"
-        height="175"
-        src="img/macbeth.jpg"
-        width="280"
+      <video
+        style={
+          Object {
+            "height": "100%",
+            "objectFit": "fill",
+            "width": "100%",
+          }
+        }
       />
     </div>
     <h3
