@@ -11,7 +11,8 @@ describe(`The component interactivity`, () => {
     const mockMovie = {
       genre: `Comedies`,
       title: `Johnny English`,
-      image: `img/johnny-english.jpg`
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     };
     const movieCard = shallow(<MovieCardTemplate
       movie = {mockMovie}
@@ -23,11 +24,13 @@ describe(`The component interactivity`, () => {
 
     expect(titleClickHandler).toHaveBeenCalledTimes(1);
   });
+
   it(`Will add movie info in callback, then user hover on movie card`, () => {
     const mockMovie = {
       genre: `Comedies`,
       title: `Johnny English`,
-      image: `img/johnny-english.jpg`
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     };
     const movieCardEnterHandler = jest.fn();
     const movieCard = shallow(<MovieCardTemplate
@@ -42,11 +45,13 @@ describe(`The component interactivity`, () => {
     expect(movieCardEnterHandler).toHaveBeenCalledTimes(1);
     expect(movieCardEnterHandler.mock.calls[0][0]).toEqual(mockMovie);
   });
+
   it(`Remove movie info from callback, then user hover on movie card`, () => {
     const mockMovie = {
       genre: `Comedies`,
       title: `Johnny English`,
-      image: `img/johnny-english.jpg`
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     };
     const movieCardLeaveHandler = jest.fn();
     const movieCard = shallow(<MovieCardTemplate
@@ -59,5 +64,49 @@ describe(`The component interactivity`, () => {
     smallMovieCard.simulate(`mouseleave`);
 
     expect(movieCardLeaveHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it(`Play a mock preview when user hover on small movie card`, () => {
+    const mockMovie = {
+      genre: `Comedies`,
+      title: `Johnny English`,
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    };
+    const movieCardEnterHandler = jest.fn();
+    const movieCard = shallow(<MovieCardTemplate
+      movie = {mockMovie}
+      onMovieCardEnter = {movieCardEnterHandler}
+    />);
+
+    const smallMovieCard = movieCard.find(`.small-movie-card`);
+    expect(movieCard.state(`isPlaying`)).toEqual(false);
+
+    smallMovieCard.simulate(`mouseenter`);
+    expect(movieCard.state(`isPlaying`)).toEqual(true);
+  });
+
+  it(`Stop play mock preview when user leave a small movie card`, () => {
+    const mockMovie = {
+      genre: `Comedies`,
+      title: `Johnny English`,
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    };
+    const movieCardEnterHandler = jest.fn();
+    const movieCardLeaveHandler = jest.fn();
+    const movieCard = shallow(<MovieCardTemplate
+      movie = {mockMovie}
+      onMovieCardEnter = {movieCardEnterHandler}
+      onMovieCardLeave = {movieCardLeaveHandler}
+    />);
+
+    const smallMovieCard = movieCard.find(`.small-movie-card`);
+    smallMovieCard.simulate(`mouseenter`);
+
+    expect(movieCard.state(`isPlaying`)).toEqual(true);
+
+    smallMovieCard.simulate(`mouseleave`);
+    expect(movieCard.state(`isPlaying`)).toEqual(false);
   });
 });

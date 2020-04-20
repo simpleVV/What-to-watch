@@ -7,7 +7,8 @@ describe(`The component is rendered correctly`, () => {
     const mockMovie = {
       genre: `Comedies`,
       title: `Johnny English`,
-      image: `img/johnny-english.jpg`
+      image: `img/johnny-english.jpg`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     };
     const movieCard = renderer
       .create(<MovieCardTemplate

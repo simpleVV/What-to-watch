@@ -6,6 +6,7 @@ import MovieCardTemplate from '../small-movie-card/small-movie-card.jsx';
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       currentCard: null
     };
