@@ -1,3 +1,4 @@
+const webpack = require(`webpack`);
 const path = require(`path`);
 
 module.exports = {
@@ -11,6 +12,15 @@ module.exports = {
     compress: false,
     open: true,
     port: 1337,
+    historyApiFallback: true,
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      React: `react`
+    })
+  ],
+  resolve: {
+    extensions: [`.js`, `.jsx`, `.ts`, `.tsx`, `.webm`]
   },
   module: {
     rules: [

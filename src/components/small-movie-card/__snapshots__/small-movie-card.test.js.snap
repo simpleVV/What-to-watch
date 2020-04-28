@@ -24,7 +24,7 @@ exports[`The component is rendered correctly Movie card correctly renders with t
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films#d90f:fc74:a512:6497:6aab:537:251c:c35a"
     >
       Johnny English
     </a>

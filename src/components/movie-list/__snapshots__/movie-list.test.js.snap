@@ -28,7 +28,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films#d90f:fc74:a512:6497:6aab:537:251c:c35a"
       >
         Johnny English
       </a>
@@ -58,7 +58,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films#94b2:9524:2d16:7525:dcb8:9540:7ba0:3afc"
       >
         Snatch
       </a>
@@ -88,7 +88,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films#aa8e:d530:c2f3:1755:12fb:64af:130a:ef47"
       >
         Pulp Fiction
       </a>
@@ -118,7 +118,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films#9a58:9bc0:9458:ffe6:7191:e97a:47d0:577"
       >
         Macbeth
       </a>

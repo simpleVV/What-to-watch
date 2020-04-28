@@ -18,9 +18,9 @@ class MovieList extends PureComponent {
     const {movies} = this.props;
 
     return <div className="catalog__movies-list">
-      {movies.map((movie, i) =>
+      {movies.map((movie) =>
         <MovieCardTemplate
-          key = {movie.title + i}
+          key = {movie.id}
           movie = {movie}
           onMovieCardEnter = {this._getMovieInfo}
           onMovieCardLeave = {this._removeMovieInfo}

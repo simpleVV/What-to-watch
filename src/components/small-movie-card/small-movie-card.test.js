@@ -5,6 +5,7 @@ import MovieCardTemplate from './small-movie-card.jsx';
 describe(`The component is rendered correctly`, () => {
   it(`Movie card correctly renders with transferred mock-movie`, () => {
     const mockMovie = {
+      id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
       genre: `Comedies`,
       title: `Johnny English`,
       image: `img/johnny-english.jpg`,
