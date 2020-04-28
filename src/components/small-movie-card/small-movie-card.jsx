@@ -22,6 +22,7 @@ class MovieCardTemplate extends PureComponent {
     } = this.props;
 
     const {
+      id,
       title,
       image,
       preview
@@ -38,7 +39,7 @@ class MovieCardTemplate extends PureComponent {
         isPlaying = {isPlaying}
       />
       <h3 className="small-movie-card__title" onClick={onTitleClick}>
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        <a className="small-movie-card__link" href={`/films#${id}`}>{title}</a>
       </h3>
     </article>;
   }
@@ -63,6 +64,7 @@ class MovieCardTemplate extends PureComponent {
 MovieCardTemplate.propTypes = {
   movie: PropTypes.shape(
       {
+        id: PropTypes.string,
         title: PropTypes.string.isRequired,
         image: PropTypes.string,
         preview: VideoPlayer.propTypes.preview
