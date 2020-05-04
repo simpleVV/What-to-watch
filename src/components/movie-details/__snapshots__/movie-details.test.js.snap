@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The component is rendered correctly Movie page details renders with transferred mock data 1`] = `
+exports[`The component is rendered correctly Movie details correctly renders with transferred mock data 1`] = `
 <div
   className="movie-card__text movie-card__row"
 >
