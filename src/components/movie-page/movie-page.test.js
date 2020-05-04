@@ -24,9 +24,27 @@ describe(`The component is rendered correctly`, () => {
         starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`, `Owen Wilkinson`, `Adrien Brody`, `Ralph Fiennes`, `Jeff Goldblum`]
       }
     };
+    const mockMovies = [
+      {
+        id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
+        genre: `Comedies`,
+        title: `Johnny English`,
+        image: `img/johnny-english.jpg`,
+        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      },
+      {
+        id: `94b2:9524:2d16:7525:dcb8:9540:7ba0:3afc`,
+        genre: `Crime`,
+        title: `Snatch`,
+        image: `img/snatch.jpg`,
+        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      }
+    ];
+
     const moviePage = renderer
     .create(<MoviePage
       movie = {mockMovie}
+      similarMovies = {mockMovies}
     />)
     .toJSON();
 

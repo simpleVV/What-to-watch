@@ -16,9 +16,11 @@ const App = (props) => {
       case `/films`:
         const id = location.hash.slice(1);
         const currentFilm = films.find((film) => film.id === id);
+        const similarFilms = movies.filter((film) => film.genre === currentFilm.genre);
         return (
           <MoviePage
             movie = {currentFilm}
+            similarMovies = {similarFilms}
           />
         );
     }
