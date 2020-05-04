@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Tabs from '../tabs/tabs.jsx';
 
 const MoviePage = (props) => {
   const {movie} = props;
   const {
+    id,
     genre,
     title,
-    details
+    details,
+    reviews
   } = movie;
 
   const {
     releaseDate,
     bigPoster,
     poster,
-    description,
-    ratingLevel,
-    ratingScore,
-    ratingCount,
-    director,
-    starring
   } = details;
 
   return <section className="movie-card movie-card--full">
@@ -78,37 +75,14 @@ const MoviePage = (props) => {
           <img src={poster} alt={title} width="218" height="327" />
         </div>
 
-        <div className="movie-card__desc">
-          <nav className="movie-nav movie-card__nav">
-            <ul className="movie-nav__list">
-              <li className="movie-nav__item movie-nav__item--active">
-                <a href="#" className="movie-nav__link">Overview</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Details</a>
-              </li>
-              <li className="movie-nav__item">
-                <a href="#" className="movie-nav__link">Reviews</a>
-              </li>
-            </ul>
-          </nav>
+        <Tabs
+          id = {id}
+          genre = {genre}
+          details = {details}
+          reviews = {reviews}
+          onTabClick = {() => {}}
+        />
 
-          <div className="movie-rating">
-            <div className="movie-rating__score">{ratingScore}</div>
-            <p className="movie-rating__meta">
-              <span className="movie-rating__level">{ratingLevel}</span>
-              <span className="movie-rating__count">{ratingCount} ratings</span>
-            </p>
-          </div>
-
-          <div className="movie-card__text">
-            <p>{description}</p>
-
-            <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-            <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)} and other</strong></p>
-          </div>
-        </div>
       </div>
     </div>
   </section>;
@@ -117,6 +91,7 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   movie: PropTypes.shape(
       {
+        id: PropTypes.string.isRequired,
         genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]),
         title: PropTypes.string.isRequired,
         details: PropTypes.shape(
@@ -129,9 +104,10 @@ MoviePage.propTypes = {
               ratingScore: PropTypes.string,
               ratingCount: PropTypes.number,
               director: PropTypes.string,
-              starring: PropTypes.arrayOf[PropTypes.string]
+              starring: PropTypes.arrayOf(PropTypes.string)
             }
-        )
+        ),
+        reviews: Tabs.propTypes.reviews
       }
   )
 };
