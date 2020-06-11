@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {App} from './app.jsx';
 
 describe(`The component is rendered correctly`, () => {
   it(`App correctly renders with transferred data`, () => {
@@ -27,9 +27,14 @@ describe(`The component is rendered correctly`, () => {
         preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
       }
     ];
+    const mockGenres = [`All genres`, `Comedies`, `Crime`];
+
     const app = renderer
     .create(<App
-      movies = {mockMovies}
+      allGenres = {mockGenres}
+      fullMovieList = {mockMovies}
+      filteredMovies = {mockMovies}
+      onFilterItemClick = {jest.fn}
     />)
       .toJSON();
 

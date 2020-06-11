@@ -1,9 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainScreen from './main-screen.jsx';
+
+import Catalog from './catalog.jsx';
 
 describe(`The component is rendered correctly`, () => {
-  it(`Main screen correctly renders with transferred mock-movies title`, () => {
+  it(`Catalog correctly renders with transferrd mock data`, () => {
     const mockMovies = [
       {
         id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
@@ -18,20 +19,13 @@ describe(`The component is rendered correctly`, () => {
         title: `Snatch`,
         image: `img/snatch.jpg`,
         preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-      },
-      {
-        id: `aa8e:d530:c2f3:1755:12fb:64af:130a:ef47`,
-        genre: `Crime`,
-        title: `Pulp Fiction`,
-        image: `img/pulp-fiction.jpg`,
-        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
       }
     ];
     const mockGenres = [`All genres`, `Crime`, `Comedies`];
     const mockCurrentGenre = `All genres`;
 
-    const mainScreen = renderer
-    .create(<MainScreen
+    const catalog = renderer
+    .create(<Catalog
       movies = {mockMovies}
       allGenres = {mockGenres}
       currentGenre = {mockCurrentGenre}
@@ -39,6 +33,6 @@ describe(`The component is rendered correctly`, () => {
     />)
     .toJSON();
 
-    expect(mainScreen).toMatchSnapshot();
+    expect(catalog).toMatchSnapshot();
   });
 });

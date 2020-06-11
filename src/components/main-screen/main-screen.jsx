@@ -1,8 +1,14 @@
 import React from 'react';
-import MovieList from '../movie-list/movie-list.jsx';
+
+import Catalog from '../catalog/catalog.jsx';
 
 const MainScreen = (props) => {
-  const {movies} = props;
+  const {
+    allGenres,
+    currentGenre,
+    onGenreClick,
+    movies
+  } = props;
 
   return <main>
     <section className="movie-card">
@@ -62,50 +68,13 @@ const MainScreen = (props) => {
     </section>
 
     <div className="page-content">
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
-          </li>
-        </ul>
-
-        <MovieList
-          movies = {movies}
-        />
-
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
-      </section>
+      <Catalog
+        allGenres = {allGenres}
+        currentGenre = {currentGenre}
+        onGenreClick = {onGenreClick}
+        movies = {movies}
+      />
 
       <footer className="page-footer">
         <div className="logo">
@@ -125,7 +94,10 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movies: MovieList.propTypes.movies,
+  movies: Catalog.propTypes.movies,
+  allGenres: Catalog.propTypes.allGenres,
+  currentGenre: Catalog.propTypes.currentGenre,
+  onGenreClick: Catalog.propTypes.onGenreClick
 };
 
 export default MainScreen;
