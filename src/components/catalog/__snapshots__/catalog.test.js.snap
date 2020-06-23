@@ -114,7 +114,8 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
     className="catalog__more"
   >
     <button
-      className="catalog__button"
+      className="catalog__button "
+      onClick={[Function]}
       type="button"
     >
       Show more

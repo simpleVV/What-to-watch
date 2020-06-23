@@ -12,6 +12,7 @@ const initialState = {
   allGenres: genres,
   fullMovieList: films,
   filteredMovies: films,
+  moviesPerPage: 8
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,10 @@ const reducer = (state = initialState, action) => {
     case `FILTER_MOVIES`:
       return Object.assign({}, state, {
         filteredMovies: action.payload
+      });
+    case `SHOW_MORE_MOVIES`:
+      return Object.assign({}, state, {
+        moviesPerPage: state.moviesPerPage + action.payload
       });
   }
   return state;

@@ -1,15 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
+import CatalogShowMore from '../catalog-show-more/catalog-show-more.jsx';
 
 const Catalog = (props) => {
   const {
     allGenres,
     currentGenre,
+    moviesPerPage,
+    movies,
     onGenreClick,
-    movies
+    onShowMoreButtonClick,
   } = props;
+
+  const currentMovies = [...movies];
+  currentMovies.length = moviesPerPage;
+
+  const isMaxMoviesPerPage = (moviesPerPage >= movies.length) ? true :
+    false;
 
   return (
     <section className="catalog">
@@ -21,12 +31,13 @@ const Catalog = (props) => {
         onGenreClick = {onGenreClick}
       />
       <MovieList
-        movies = {movies}
+        movies = {currentMovies}
       />
 
-      <div className="catalog__more">
-        <button className="catalog__button" type="button">Show more</button>
-      </div>
+      <CatalogShowMore
+        onShowMoreButtonClick={onShowMoreButtonClick}
+        maxMoviesPerPage = {isMaxMoviesPerPage}
+      />
     </section>
   );
 };
@@ -35,7 +46,9 @@ Catalog.propTypes = {
   movies: MovieList.propTypes.movies,
   allGenres: GenreList.propTypes.allGenres,
   currentGenre: GenreList.propTypes.currentGenre,
-  onGenreClick: GenreList.propTypes.onGenreClick
+  onGenreClick: GenreList.propTypes.onGenreClick,
+  moviesPerPage: PropTypes.number,
+  onShowMoreButtonClick: CatalogShowMore.propTypes.onShowMoreButtonClick
 };
 
 export default Catalog;

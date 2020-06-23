@@ -19,22 +19,18 @@ describe(`The component is rendered correctly`, () => {
         image: `img/snatch.jpg`,
         preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
       },
-      {
-        id: `aa8e:d530:c2f3:1755:12fb:64af:130a:ef47`,
-        genre: `Crime`,
-        title: `Pulp Fiction`,
-        image: `img/pulp-fiction.jpg`,
-        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-      }
     ];
-    const mockGenres = [`All genres`, `Comedies`, `Crime`];
+    const mockFilteredMovies = mockMovies.filter((it) => it.genre === `Comedies`);
+    const mockGenres = [`All genres`, `Crime`, `Comedies`];
 
     const app = renderer
     .create(<App
-      allGenres = {mockGenres}
       fullMovieList = {mockMovies}
-      filteredMovies = {mockMovies}
-      onFilterItemClick = {jest.fn}
+      filteredMovies = {mockFilteredMovies}
+      moviesPerPage = {8}
+      allGenres = {mockGenres}
+      onFilterItemClick = {jest.fn()}
+      onShowMoreButtonClick = {jest.fn()}
     />)
       .toJSON();
 

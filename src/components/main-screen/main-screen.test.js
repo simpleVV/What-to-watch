@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import MainScreen from './main-screen.jsx';
 
 describe(`The component is rendered correctly`, () => {
@@ -18,13 +19,6 @@ describe(`The component is rendered correctly`, () => {
         title: `Snatch`,
         image: `img/snatch.jpg`,
         preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-      },
-      {
-        id: `aa8e:d530:c2f3:1755:12fb:64af:130a:ef47`,
-        genre: `Crime`,
-        title: `Pulp Fiction`,
-        image: `img/pulp-fiction.jpg`,
-        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
       }
     ];
     const mockGenres = [`All genres`, `Crime`, `Comedies`];
@@ -33,9 +27,11 @@ describe(`The component is rendered correctly`, () => {
     const mainScreen = renderer
     .create(<MainScreen
       movies = {mockMovies}
-      allGenres = {mockGenres}
       currentGenre = {mockCurrentGenre}
-      onGenreClick = {jest.fn}
+      moviesPerPage = {8}
+      allGenres = {mockGenres}
+      onGenreClick = {jest.fn()}
+      onShowMoreButtonClick = {jest.fn()}
     />)
     .toJSON();
 

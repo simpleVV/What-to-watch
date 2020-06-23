@@ -28,8 +28,10 @@ describe(`The component is rendered correctly`, () => {
     .create(<Catalog
       movies = {mockMovies}
       allGenres = {mockGenres}
+      moviesPerPage = {8}
       currentGenre = {mockCurrentGenre}
       onGenreClick = {jest.fn}
+      onShowMoreButtonClick = {jest.fn}
     />)
     .toJSON();
 

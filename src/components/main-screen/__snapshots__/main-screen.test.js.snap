@@ -250,42 +250,13 @@ exports[`The component is rendered correctly Main screen correctly renders with 
             </a>
           </h3>
         </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              style={
-                Object {
-                  "height": "100%",
-                  "objectFit": "fill",
-                  "width": "100%",
-                }
-              }
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="/films#aa8e:d530:c2f3:1755:12fb:64af:130a:ef47"
-            >
-              Pulp Fiction
-            </a>
-          </h3>
-        </article>
       </div>
       <div
         className="catalog__more"
       >
         <button
-          className="catalog__button"
+          className="catalog__button "
+          onClick={[MockFunction]}
           type="button"
         >
           Show more

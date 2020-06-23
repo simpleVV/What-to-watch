@@ -23,7 +23,9 @@ class App extends PureComponent {
       allGenres,
       currentGenre,
       filteredMovies,
-      onFilterItemClick
+      moviesPerPage,
+      onFilterItemClick,
+      onShowMoreButtonClick
     } = this.props;
 
     switch (location.pathname) {
@@ -33,10 +35,12 @@ class App extends PureComponent {
             movies = {filteredMovies}
             currentGenre = {currentGenre}
             allGenres = {allGenres}
+            moviesPerPage = {moviesPerPage}
             onGenreClick = {(genre) => onFilterItemClick(
                 genre,
                 moviesList
             )}
+            onShowMoreButtonClick = {() => onShowMoreButtonClick(moviesPerPage, moviesList.length)}
           />
         );
       case `/films`:
@@ -56,24 +60,30 @@ class App extends PureComponent {
 
 App.propTypes = {
   allGenres: MainScreen.propTypes.allGenres,
-  onFilterItemClick: PropTypes.func.isRequired,
   currentGenre: MainScreen.propTypes.currentGenre,
   fullMovieList: MainScreen.propTypes.movies,
-  filteredMovies: MainScreen.propTypes.movies
+  filteredMovies: MainScreen.propTypes.movies,
+  moviesPerPage: MainScreen.propTypes.moviesPerPage,
+  onFilterItemClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: MainScreen.propTypes.onShowMoreButtonClick
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentGenre: state.currentGenre,
   allGenres: state.allGenres,
   fullMovieList: state.fullMovieList,
-  filteredMovies: state.filteredMovies
+  filteredMovies: state.filteredMovies,
+  moviesPerPage: state.moviesPerPage
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFilterItemClick: (genre, movieList) => {
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filterMoviesByGenre(genre, movieList));
+    dispatch(ActionCreator.filterMovies(genre, movieList));
   },
+  onShowMoreButtonClick: (currentMovies, allMovies) => {
+    dispatch(ActionCreator.showMoreMovies(currentMovies, allMovies));
+  }
 });
 
 export {App};

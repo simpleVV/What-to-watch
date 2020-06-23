@@ -48,7 +48,7 @@ describe(`Action creator work correctly`, () => {
       }
     ];
 
-    expect(ActionCreator.filterMoviesByGenre(`All genres`, mockMovieList)).toEqual({
+    expect(ActionCreator.filterMovies(`All genres`, mockMovieList)).toEqual({
       type: `FILTER_MOVIES`,
       payload: mockMovieList
     });
@@ -67,7 +67,7 @@ describe(`Action creator work correctly`, () => {
       }
     ];
 
-    expect(ActionCreator.filterMoviesByGenre(`Crime`, mockMoviesList)).toEqual({
+    expect(ActionCreator.filterMovies(`Crime`, mockMoviesList)).toEqual({
       type: `FILTER_MOVIES`,
       payload: [
         {
@@ -76,13 +76,33 @@ describe(`Action creator work correctly`, () => {
       ]
     });
 
-    expect(ActionCreator.filterMoviesByGenre(`Dramas`, mockMoviesList)).toEqual({
+    expect(ActionCreator.filterMovies(`Dramas`, mockMoviesList)).toEqual({
       type: `FILTER_MOVIES`,
       payload: [
         {
           genre: `Dramas`
         }
       ]
+    });
+  });
+
+  it(`Action creator for show more movies return action with 20 payload`, () => {
+    const currentMovies = 8;
+    const allMovies = 40;
+
+    expect(ActionCreator.showMoreMovies(currentMovies, allMovies)).toEqual({
+      type: `SHOW_MORE_MOVIES`,
+      payload: 20
+    });
+  });
+
+  it(`Action creator for show more movies return action with difference in the number between current movies and all movies`, () => {
+    const currentMovies = 8;
+    const allMovies = 20;
+
+    expect(ActionCreator.showMoreMovies(currentMovies, allMovies)).toEqual({
+      type: `SHOW_MORE_MOVIES`,
+      payload: 12
     });
   });
 });

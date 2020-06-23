@@ -8,10 +8,19 @@ const ActionCreator = {
     payload: genre
   }),
 
-  filterMoviesByGenre: (genre, movieList) => ({
+  filterMovies: (genre, movieList) => ({
     type: `FILTER_MOVIES`,
     payload: filterMoviesByGenre(genre, movieList)
   }),
+
+  showMoreMovies: (currentMovies, allMovies) => {
+    const moreMovies = 20;
+
+    return {
+      type: `SHOW_MORE_MOVIES`,
+      payload: (currentMovies + moreMovies <= allMovies) ? moreMovies : allMovies - currentMovies
+    };
+  }
 };
 
 export {ActionCreator, filterMoviesByGenre};
