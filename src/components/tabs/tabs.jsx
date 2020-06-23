@@ -1,6 +1,7 @@
 import React from 'react';
 import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
@@ -37,7 +38,7 @@ class Tabs extends PureComponent {
     super(props);
 
     this.state = {
-      tabName: `Overview`
+      tabName: `Overview`,
     };
     this._tabClickHandler = this._tabClickHandler.bind(this);
   }
@@ -51,19 +52,24 @@ class Tabs extends PureComponent {
       reviews
     } = this.props;
 
+    const tabs = [`Overview`, `Details`, `Reviews`];
+
     return (
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            <li className={tabName === `Overview` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-              <a href="#" className="movie-nav__link" onClick={this._tabClickHandler}>Overview</a>
-            </li>
-            <li className={tabName === `Details` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-              <a href="#" className="movie-nav__link" onClick={this._tabClickHandler}>Details</a>
-            </li>
-            <li className={tabName === `Reviews` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-              <a href="#" className="movie-nav__link" onClick={this._tabClickHandler}>Reviews</a>
-            </li>
+            {tabs.map((tab, index) => {
+              return (
+                <li
+                  className={tabName === tab ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}
+                  key={tab + index}
+                >
+                  <a href="#"
+                    className="movie-nav__link"
+                    onClick={this._tabClickHandler}>{tab}</a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {App} from './app.jsx';
 
 describe(`The component is rendered correctly`, () => {
   it(`App correctly renders with transferred data`, () => {
@@ -19,17 +19,18 @@ describe(`The component is rendered correctly`, () => {
         image: `img/snatch.jpg`,
         preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
       },
-      {
-        id: `aa8e:d530:c2f3:1755:12fb:64af:130a:ef47`,
-        genre: `Crime`,
-        title: `Pulp Fiction`,
-        image: `img/pulp-fiction.jpg`,
-        preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-      }
     ];
+    const mockFilteredMovies = mockMovies.filter((it) => it.genre === `Comedies`);
+    const mockGenres = [`All genres`, `Crime`, `Comedies`];
+
     const app = renderer
     .create(<App
-      movies = {mockMovies}
+      fullMovieList = {mockMovies}
+      filteredMovies = {mockFilteredMovies}
+      moviesPerPage = {8}
+      allGenres = {mockGenres}
+      onFilterItemClick = {jest.fn()}
+      onShowMoreButtonClick = {jest.fn()}
     />)
       .toJSON();
 

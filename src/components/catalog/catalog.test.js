@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MainScreen from './main-screen.jsx';
+import Catalog from './catalog.jsx';
 
 describe(`The component is rendered correctly`, () => {
-  it(`Main screen correctly renders with transferred mock-movies title`, () => {
+  it(`Catalog correctly renders with transferrd mock data`, () => {
     const mockMovies = [
       {
         id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
@@ -24,17 +24,17 @@ describe(`The component is rendered correctly`, () => {
     const mockGenres = [`All genres`, `Crime`, `Comedies`];
     const mockCurrentGenre = `All genres`;
 
-    const mainScreen = renderer
-    .create(<MainScreen
+    const catalog = renderer
+    .create(<Catalog
       movies = {mockMovies}
-      currentGenre = {mockCurrentGenre}
-      moviesPerPage = {8}
       allGenres = {mockGenres}
-      onGenreClick = {jest.fn()}
-      onShowMoreButtonClick = {jest.fn()}
+      moviesPerPage = {8}
+      currentGenre = {mockCurrentGenre}
+      onGenreClick = {jest.fn}
+      onShowMoreButtonClick = {jest.fn}
     />)
     .toJSON();
 
-    expect(mainScreen).toMatchSnapshot();
+    expect(catalog).toMatchSnapshot();
   });
 });

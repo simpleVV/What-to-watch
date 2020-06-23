@@ -42,7 +42,7 @@ class VideoPlayer extends PureComponent {
 
     video.poster = null;
     video.load = null;
-    video.src = ``;
+    // video.src = ``;
   }
 
   render() {
