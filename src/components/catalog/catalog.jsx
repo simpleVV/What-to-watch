@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import CatalogShowMore from '../catalog-show-more/catalog-show-more.jsx';
 
+const GenreListWrapped = withActiveItem(GenreList);
+const MovieListWrapped = withActiveItem(MovieList);
+
 const Catalog = (props) => {
   const {
     allGenres,
-    currentGenre,
     moviesPerPage,
     movies,
     onGenreClick,
@@ -25,12 +28,11 @@ const Catalog = (props) => {
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <GenreList
+      <GenreListWrapped
         allGenres = {allGenres}
-        currentGenre = {currentGenre}
         onGenreClick = {onGenreClick}
       />
-      <MovieList
+      <MovieListWrapped
         movies = {currentMovies}
       />
 
@@ -45,7 +47,6 @@ const Catalog = (props) => {
 Catalog.propTypes = {
   movies: MovieList.propTypes.movies,
   allGenres: GenreList.propTypes.allGenres,
-  currentGenre: GenreList.propTypes.currentGenre,
   onGenreClick: GenreList.propTypes.onGenreClick,
   moviesPerPage: PropTypes.number,
   onShowMoreButtonClick: CatalogShowMore.propTypes.onShowMoreButtonClick

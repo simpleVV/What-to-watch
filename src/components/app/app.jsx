@@ -21,7 +21,6 @@ class App extends PureComponent {
   _getCurrentScreen(moviesList) {
     const {
       allGenres,
-      currentGenre,
       filteredMovies,
       moviesPerPage,
       onFilterItemClick,
@@ -33,7 +32,6 @@ class App extends PureComponent {
         return (
           <MainScreen
             movies = {filteredMovies}
-            currentGenre = {currentGenre}
             allGenres = {allGenres}
             moviesPerPage = {moviesPerPage}
             onGenreClick = {(genre) => onFilterItemClick(
@@ -60,7 +58,6 @@ class App extends PureComponent {
 
 App.propTypes = {
   allGenres: MainScreen.propTypes.allGenres,
-  currentGenre: MainScreen.propTypes.currentGenre,
   fullMovieList: MainScreen.propTypes.movies,
   filteredMovies: MainScreen.propTypes.movies,
   moviesPerPage: MainScreen.propTypes.moviesPerPage,
@@ -69,7 +66,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentGenre: state.currentGenre,
   allGenres: state.allGenres,
   fullMovieList: state.fullMovieList,
   filteredMovies: state.filteredMovies,

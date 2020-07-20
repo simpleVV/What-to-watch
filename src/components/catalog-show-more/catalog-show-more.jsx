@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 const CatalogShowMore = (props) => {
   const {
     onShowMoreButtonClick,
-    isMaxMoviesPerPage
+    maxMoviesPerPage
   } = props;
+
   return (
     <div className="catalog__more">
       <button
-        className={`catalog__button ${isMaxMoviesPerPage ? `visually-hidden` : ``}`}
+        className={`catalog__button ${maxMoviesPerPage ? `visually-hidden` : ``}`}
         type="button"
         onClick={onShowMoreButtonClick}
       >
@@ -21,7 +22,7 @@ const CatalogShowMore = (props) => {
 
 CatalogShowMore.propTypes = {
   onShowMoreButtonClick: PropTypes.func.isRequired,
-  isMaxMoviesPerPage: PropTypes.bool
+  maxMoviesPerPage: PropTypes.bool
 };
 
 export default CatalogShowMore;

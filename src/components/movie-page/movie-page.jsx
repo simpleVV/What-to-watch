@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Tabs from '../tabs/tabs.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const TabsWrapped = withActiveItem(Tabs);
+const MovieListWrapped = withActiveItem(MovieList);
 
 const MoviePage = (props) => {
   const {
@@ -15,7 +20,6 @@ const MoviePage = (props) => {
     details,
     reviews
   } = movie;
-
   const {
     releaseDate,
     bigPoster,
@@ -81,12 +85,11 @@ const MoviePage = (props) => {
               <img src={poster} alt={title} width="218" height="327" />
             </div>
 
-            <Tabs
+            <TabsWrapped
               id = {id}
               genre = {genre}
               details = {details}
               reviews = {reviews}
-              onTabClick = {() => {}}
             />
 
           </div>
@@ -97,7 +100,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MovieList
+          <MovieListWrapped
             movies = {similarMovies}
           />
 

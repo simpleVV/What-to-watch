@@ -24,7 +24,7 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
       </a>
     </li>
     <li
-      className="catalog__genres-item"
+      className="catalog__genres-item "
     >
       <a
         className="catalog__genres-link"
@@ -35,7 +35,7 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
       </a>
     </li>
     <li
-      className="catalog__genres-item"
+      className="catalog__genres-item "
     >
       <a
         className="catalog__genres-link"
@@ -114,7 +114,7 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
     className="catalog__more"
   >
     <button
-      className="catalog__button "
+      className="catalog__button visually-hidden"
       onClick={[Function]}
       type="button"
     >
