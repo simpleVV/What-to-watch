@@ -6,11 +6,11 @@ import CatalogShowMore from './catalog-show-more.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
+const isMaxMoviesPerPage = false;
+const showMoreButtonClickHandler = jest.fn();
+
 describe(`The component interactivity`, () => {
   it(`Will be called callback, if user click on button`, () => {
-    const isMaxMoviesPerPage = false;
-    const showMoreButtonClickHandler = jest.fn();
-
     const catalogShowMore = shallow(<CatalogShowMore
       onShowMoreButtonClick={showMoreButtonClickHandler}
       maxMoviesPerPage = {isMaxMoviesPerPage}

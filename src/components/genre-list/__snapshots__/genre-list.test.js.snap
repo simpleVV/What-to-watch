@@ -16,7 +16,7 @@ exports[`The component is rendered correctly Genre list correctly renders with t
     </a>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
   >
     <a
       className="catalog__genres-link"
@@ -27,7 +27,7 @@ exports[`The component is rendered correctly Genre list correctly renders with t
     </a>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item "
   >
     <a
       className="catalog__genres-link"

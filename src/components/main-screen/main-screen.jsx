@@ -5,7 +5,6 @@ import Catalog from '../catalog/catalog.jsx';
 const MainScreen = (props) => {
   const {
     allGenres,
-    currentGenre,
     onGenreClick,
     moviesPerPage,
     movies,
@@ -73,7 +72,6 @@ const MainScreen = (props) => {
       <div className="page-content">
         <Catalog
           allGenres = {allGenres}
-          currentGenre = {currentGenre}
           onGenreClick = {onGenreClick}
           moviesPerPage = {moviesPerPage}
           movies = {movies}
@@ -102,7 +100,6 @@ MainScreen.propTypes = {
   movies: Catalog.propTypes.movies,
   moviesPerPage: Catalog.propTypes.moviesPerPage,
   allGenres: Catalog.propTypes.allGenres,
-  currentGenre: Catalog.propTypes.currentGenre,
   onGenreClick: Catalog.propTypes.onGenreClick,
   onShowMoreButtonClick: Catalog.propTypes.onShowMoreButtonClick
 };

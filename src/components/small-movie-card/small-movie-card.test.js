@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import MovieCardTemplate from './small-movie-card.jsx';
 
 describe(`The component is rendered correctly`, () => {
@@ -13,6 +14,7 @@ describe(`The component is rendered correctly`, () => {
     };
     const movieCard = renderer
       .create(<MovieCardTemplate
+        isPlaying = {false}
         movie = {mockMovie}
       />)
       .toJSON();

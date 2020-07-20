@@ -1,51 +1,36 @@
 import React from 'react';
-import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+
 import MovieCardTemplate from '../small-movie-card/small-movie-card.jsx';
 
-class MovieList extends PureComponent {
-  constructor(props) {
-    super(props);
+const MovieList = (props) => {
+  const {
+    movies,
+    onItemActivate,
+    onItemDisable,
+    activeItem
+  } = props;
 
-    this.state = {
-      currentCard: null
-    };
-    this._getMovieInfo = this._getMovieInfo.bind(this);
-    this._removeMovieInfo = this._removeMovieInfo.bind(this);
-  }
-
-  render() {
-    const {movies} = this.props;
-
-    return <div className="catalog__movies-list">
-      {movies.map((movie) =>
-        <MovieCardTemplate
-          key = {movie.id}
-          movie = {movie}
-          onMovieCardEnter = {this._getMovieInfo}
-          onMovieCardLeave = {this._removeMovieInfo}
-          onTitleClick = {() => {}}
-        />)}
-    </div>;
-  }
-
-  _getMovieInfo(card) {
-    this.setState({
-      currentCard: card
-    });
-  }
-
-  _removeMovieInfo() {
-    this.setState({
-      currentCard: null
-    });
-  }
-}
+  return <div className="catalog__movies-list">
+    {movies.map((movie) =>
+      <MovieCardTemplate
+        isPlaying = {activeItem === movie}
+        key = {movie.id}
+        movie = {movie}
+        onMovieCardEnter = {() => onItemActivate(movie)}
+        onMovieCardLeave = {onItemDisable}
+        onTitleClick = {() => {}}
+      />)}
+  </div>;
+};
 
 MovieList.propTypes = {
+  activeItem: MovieCardTemplate.propTypes.movie,
   movies: PropTypes.arrayOf(
       MovieCardTemplate.propTypes.movie
-  ).isRequired
+  ).isRequired,
+  onItemActivate: PropTypes.func.isRequired,
+  onItemDisable: PropTypes.func.isRequired
 };
 
 export default MovieList;

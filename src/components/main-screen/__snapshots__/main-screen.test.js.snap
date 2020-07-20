@@ -165,7 +165,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -176,7 +176,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -255,7 +255,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
         className="catalog__more"
       >
         <button
-          className="catalog__button "
+          className="catalog__button visually-hidden"
           onClick={[MockFunction]}
           type="button"
         >

@@ -154,7 +154,7 @@ exports[`The component is rendered correctly App correctly renders with transfer
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item catalog__genres-item--active"
         >
           <a
             className="catalog__genres-link"
@@ -165,7 +165,7 @@ exports[`The component is rendered correctly App correctly renders with transfer
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -176,7 +176,7 @@ exports[`The component is rendered correctly App correctly renders with transfer
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -225,7 +225,7 @@ exports[`The component is rendered correctly App correctly renders with transfer
         className="catalog__more"
       >
         <button
-          className="catalog__button "
+          className="catalog__button visually-hidden"
           onClick={[Function]}
           type="button"
         >

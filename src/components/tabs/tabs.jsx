@@ -37,21 +37,19 @@ class Tabs extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      tabName: `Overview`,
-    };
     this._tabClickHandler = this._tabClickHandler.bind(this);
   }
 
   render() {
-    const {tabName} = this.state;
     const {
       id,
       genre,
       details,
-      reviews
+      reviews,
+      activeItem
     } = this.props;
 
+    const activeTab = (activeItem) ? activeItem : `Overview`;
     const tabs = [`Overview`, `Details`, `Reviews`];
 
     return (
@@ -61,7 +59,7 @@ class Tabs extends PureComponent {
             {tabs.map((tab, index) => {
               return (
                 <li
-                  className={tabName === tab ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}
+                  className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}
                   key={tab + index}
                 >
                   <a href="#"
@@ -73,27 +71,26 @@ class Tabs extends PureComponent {
           </ul>
         </nav>
 
-        {Tabs.getCurrentTab(tabName, id, genre, details, reviews)}
+        {Tabs.getCurrentTab(activeTab, id, genre, details, reviews)}
 
       </div>
     );
   }
 
   _tabClickHandler(evt) {
+    const {onItemActivate} = this.props;
     evt.preventDefault();
-    this.props.onTabClick();
-    this.setState({
-      tabName: evt.target.textContent
-    });
+    onItemActivate(evt.target.textContent);
   }
 }
 
 Tabs.propTypes = {
   id: PropTypes.string,
   genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]),
+  activeItem: PropTypes.oneOf([`Overview`, `Details`, `Reviews`]),
   details: MovieOverview.propTypes.details,
   reviews: MovieReviews.propTypes.reviews,
-  onTabClick: PropTypes.func
+  onItemActivate: PropTypes.func
 };
 
 export default Tabs;

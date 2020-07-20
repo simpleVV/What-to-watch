@@ -7,7 +7,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    onMouseLeave={[MockFunction]}
   >
     <div
       className="small-movie-card__image"
@@ -37,7 +37,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    onMouseLeave={[MockFunction]}
   >
     <div
       className="small-movie-card__image"
@@ -67,7 +67,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    onMouseLeave={[MockFunction]}
   >
     <div
       className="small-movie-card__image"
@@ -97,7 +97,7 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    onMouseLeave={[MockFunction]}
   >
     <div
       className="small-movie-card__image"
