@@ -85,12 +85,12 @@ class Tabs extends PureComponent {
 }
 
 Tabs.propTypes = {
-  id: PropTypes.string,
-  genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]),
+  id: PropTypes.string.isRequired,
+  genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]).isRequired,
   activeItem: PropTypes.oneOf([`Overview`, `Details`, `Reviews`]),
   details: MovieOverview.propTypes.details,
   reviews: MovieReviews.propTypes.reviews,
-  onItemActivate: PropTypes.func
+  onItemActivate: PropTypes.func.isRequired
 };
 
 export default Tabs;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component with video is rendered correctly With video correctly renders 1`] = `
+<div>
+  <video
+    style={
+      Object {
+        "height": "100%",
+        "objectFit": "fill",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;

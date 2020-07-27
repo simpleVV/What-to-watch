@@ -11,6 +11,7 @@ const movieCardEnterHandler = jest.fn();
 const movieCardLeaveHandler = jest.fn();
 
 const mockMovie = {
+  id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
   genre: `Comedies`,
   title: `Johnny English`,
   image: `img/johnny-english.jpg`,
@@ -23,6 +24,8 @@ describe(`The component interactivity`, () => {
       isPlaying = {false}
       movie = {mockMovie}
       onTitleClick = {titleClickHandler}
+      onMovieCardEnter = {movieCardEnterHandler}
+      onMovieCardLeave = {movieCardLeaveHandler}
     />);
 
     const title = movieCard.find(`.small-movie-card__title`);
@@ -31,25 +34,32 @@ describe(`The component interactivity`, () => {
     expect(titleClickHandler).toHaveBeenCalledTimes(1);
   });
 
-  it(`Will be called callback, then user hover on movie card`, () => {
+  it(`Will be called callback after 1 second, when user hover on movie card`, () => {
+    jest.useFakeTimers();
+
     const movieCard = mount(<MovieCardTemplate
       isPlaying = {true}
       movie = {mockMovie}
       onMovieCardEnter = {movieCardEnterHandler}
+      onMovieCardLeave = {movieCardLeaveHandler}
+      onTitleClick = {titleClickHandler}
     />);
 
     const smallMovieCard = movieCard.find(`.small-movie-card`);
 
     smallMovieCard.simulate(`mouseenter`);
+    jest.runAllTimers();
 
     expect(movieCardEnterHandler).toHaveBeenCalledTimes(1);
   });
 
-  it(`Will be called callback, then user leave movie card`, () => {
+  it(`Will be called callback, when user leave movie card`, () => {
     const movieCard = mount(<MovieCardTemplate
       isPlaying = {false}
       movie = {mockMovie}
+      onMovieCardEnter = {movieCardEnterHandler}
       onMovieCardLeave = {movieCardLeaveHandler}
+      onTitleClick = {titleClickHandler}
     />);
 
     const smallMovieCard = movieCard.find(`.small-movie-card`);

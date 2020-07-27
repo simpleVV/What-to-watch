@@ -22,7 +22,7 @@ const CatalogShowMore = (props) => {
 
 CatalogShowMore.propTypes = {
   onShowMoreButtonClick: PropTypes.func.isRequired,
-  maxMoviesPerPage: PropTypes.bool
+  maxMoviesPerPage: PropTypes.bool.isRequired
 };
 
 export default CatalogShowMore;

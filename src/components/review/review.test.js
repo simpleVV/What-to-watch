@@ -15,7 +15,8 @@ describe(`The component is rendered correctly`, () => {
     const review = renderer
     .create(<Review
       review = {mockReview}
-    />);
+    />)
+    .toJSON();
 
     expect(review).toMatchSnapshot();
   });

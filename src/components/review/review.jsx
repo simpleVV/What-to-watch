@@ -34,9 +34,9 @@ Review.propTypes = {
         text: PropTypes.string.isRequared,
         author: PropTypes.string.isRequared,
         date: PropTypes.string.isRequared,
-        rating: PropTypes.string
+        rating: PropTypes.string.isRequired
       }
-  )
+  ).isRequired
 };
 
 export default Review;
