@@ -48,7 +48,7 @@ Catalog.propTypes = {
   movies: MovieList.propTypes.movies,
   allGenres: GenreList.propTypes.allGenres,
   onGenreClick: GenreList.propTypes.onGenreClick,
-  moviesPerPage: PropTypes.number,
+  moviesPerPage: PropTypes.number.isRequired,
   onShowMoreButtonClick: CatalogShowMore.propTypes.onShowMoreButtonClick
 };
 

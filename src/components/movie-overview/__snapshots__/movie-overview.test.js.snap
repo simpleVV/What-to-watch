@@ -7,7 +7,9 @@ Array [
   >
     <div
       className="movie-rating__score"
-    />
+    >
+      8,9
+    </div>
     <p
       className="movie-rating__meta"
     >

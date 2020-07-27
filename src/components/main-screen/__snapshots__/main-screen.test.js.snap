@@ -197,6 +197,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
         >
           <div
             className="small-movie-card__image"
+            onMouseLeave={[Function]}
           >
             <video
               style={
@@ -227,6 +228,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
         >
           <div
             className="small-movie-card__image"
+            onMouseLeave={[Function]}
           >
             <video
               style={

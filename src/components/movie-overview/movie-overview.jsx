@@ -36,15 +36,15 @@ const MovieOverview = (props) => {
 MovieOverview.propTypes = {
   details: PropTypes.shape(
       {
-        releaseDate: PropTypes.number,
-        bigPoster: PropTypes.string,
-        poster: PropTypes.string,
-        description: PropTypes.string,
-        ratingLevel: PropTypes.string,
-        ratingScore: PropTypes.string,
-        ratingCount: PropTypes.number,
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string)
+        releaseDate: PropTypes.number.isRequired,
+        bigPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        ratingLevel: PropTypes.string.isRequired,
+        ratingScore: PropTypes.string.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string).isRequired
       }
   )
 };

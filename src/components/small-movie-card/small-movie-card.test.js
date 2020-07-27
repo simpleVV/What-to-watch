@@ -16,6 +16,9 @@ describe(`The component is rendered correctly`, () => {
       .create(<MovieCardTemplate
         isPlaying = {false}
         movie = {mockMovie}
+        onTitleClick = {jest.fn()}
+        onMovieCardEnter = {jest.fn()}
+        onMovieCardLeave = {jest.fn()}
       />)
       .toJSON();
 

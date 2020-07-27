@@ -3,9 +3,12 @@
 exports[`The component is rendered correctly Movie card correctly renders with transferred mock-movie 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
+    onMouseLeave={[Function]}
   >
     <video
       style={
@@ -19,6 +22,7 @@ exports[`The component is rendered correctly Movie card correctly renders with t
   </div>
   <h3
     className="small-movie-card__title"
+    onClick={[MockFunction]}
   >
     <a
       className="small-movie-card__link"

@@ -39,7 +39,7 @@ const GenreList = (props) => {
 GenreList.propTypes = {
   allGenres: PropTypes.arrayOf(
       PropTypes.oneOf([`All genres`, `Crime`, `Comedies`, `Dramas`, `Thrillers`, `Horror`])
-  ),
+  ).isRequired,
   activeItem: PropTypes.oneOf([`All genres`, `Crime`, `Comedies`, `Dramas`, `Thrillers`, `Horror`]),
   onGenreClick: PropTypes.func.isRequired,
   onItemActivate: PropTypes.func.isRequired

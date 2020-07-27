@@ -56,10 +56,10 @@ MovieDetails.propTypes = {
   genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]),
   details: PropTypes.shape(
       {
-        runTime: PropTypes.string,
-        releaseDate: PropTypes.number,
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf[PropTypes.string]
+        runTime: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf[PropTypes.string.isRequired]
       }
   )
 };

@@ -200,7 +200,9 @@ Array [
           >
             <div
               className="movie-rating__score"
-            />
+            >
+              8,9
+            </div>
             <p
               className="movie-rating__meta"
             >
@@ -268,6 +270,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseLeave={[Function]}
           >
             <video
               style={
@@ -298,6 +301,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onMouseLeave={[Function]}
           >
             <video
               style={

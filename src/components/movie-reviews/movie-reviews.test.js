@@ -25,7 +25,8 @@ describe(`The component is rendered correctly`, () => {
     .create(<MovieReviews
       id = {mockId}
       reviews = {mockReviews}
-    />);
+    />)
+    .toJSON();
 
     expect(moviePageReviews).toMatchSnapshot();
   });
