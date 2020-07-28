@@ -8,9 +8,7 @@ const mockElement = <video/>;
 describe(`The component is rendered correctly`, () => {
   it(`Video player correctly renders with transferred mock data`, () => {
     const videoPlayer = renderer
-    .create(<VideoPlayer
-      onVideoReset = {jest.fn()}
-    >
+    .create(<VideoPlayer>
       {mockElement}
     </VideoPlayer>)
     .toJSON();

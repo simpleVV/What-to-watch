@@ -5,25 +5,20 @@ import {PropTypes} from 'prop-types';
 const VideoPlayer = (props) => {
   const {
     children,
-    onVideoReset,
+    // onVideoReset,
   } = props;
 
   return (
     <Fragment>
-      <div className="small-movie-card__image"
-        onMouseLeave = {onVideoReset}
-      >
-        {children}
-      </div>
+      {children}
     </Fragment>
   );
 };
 
 VideoPlayer.propTypes = {
-  onVideoReset: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node).isRequired,
-    PropTypes.node.isRequired
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
   ]).isRequired,
 };
 

@@ -11,7 +11,6 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   >
     <div
       className="small-movie-card__image"
-      onMouseLeave={[Function]}
     >
       <video
         style={
@@ -42,7 +41,6 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   >
     <div
       className="small-movie-card__image"
-      onMouseLeave={[Function]}
     >
       <video
         style={
@@ -73,7 +71,6 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   >
     <div
       className="small-movie-card__image"
-      onMouseLeave={[Function]}
     >
       <video
         style={
@@ -104,7 +101,6 @@ exports[`The component is rendered correctly Movie list correctly renders with t
   >
     <div
       className="small-movie-card__image"
-      onMouseLeave={[Function]}
     >
       <video
         style={

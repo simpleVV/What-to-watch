@@ -12,7 +12,6 @@ const withVideo = (Component) => {
         isLoading: true,
         isPlaying: props.isPlaying,
       };
-      this._videoReset = this._videoReset.bind(this);
       this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
     }
 
@@ -21,12 +20,13 @@ const withVideo = (Component) => {
       const {
         poster,
         preview,
+        src,
         muted
       } = this.props;
 
       if (video) {
         video.muted = muted;
-        video.src = preview;
+        video.src = (preview) ? preview : src;
         video.poster = poster;
 
         video.oncanplay = () => this.setState({
@@ -45,6 +45,11 @@ const withVideo = (Component) => {
 
     componentDidUpdate() {
       const video = this._videoRef.current;
+      const {preview} = this.props;
+
+      if (preview) {
+        return (this.props.isPlaying) ? video.play() : video.load();
+      }
 
       return (this.props.isPlaying) ? video.play() : video.pause();
     }
@@ -70,7 +75,6 @@ const withVideo = (Component) => {
           {...this.props}
           // isLoading = {isLoading}
           // isPlaying = {isPlaying}
-          onVideoReset = {this._videoReset}
           onPlayButtonClick = {this._playButtonClickHandler}
         >
           <video style={style}
@@ -78,14 +82,6 @@ const withVideo = (Component) => {
           />
         </Component>
       );
-    }
-
-    _videoReset() {
-      const video = this._videoRef.current;
-
-      if (video) {
-        video.load();
-      }
     }
 
     _playButtonClickHandler() {
@@ -101,6 +97,7 @@ const withVideo = (Component) => {
     onPlayButtonClick: PropTypes.func,
     poster: PropTypes.string,
     preview: PropTypes.string,
+    src: PropTypes.string,
     muted: PropTypes.bool,
     style: PropTypes.oneOfType([
       PropTypes.object,
