@@ -11,13 +11,11 @@ const MockVideoPlayer = (props) => {
   const {
     children,
     onPlayButtonClick,
-    onVideoReset
   } = props;
 
   return (
     <div>
       <button onClick = {onPlayButtonClick}/>
-      <button onClick = {onVideoReset}/>
       {children}
     </div>
   );
@@ -51,7 +49,7 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`).at(0);
+    const button = mockVideoPlayerWrapped.find(`button`);
     button.simulate(`click`);
 
     expect(onPlayButtonClickHandler).toHaveBeenCalledTimes(1);
@@ -71,7 +69,7 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`).at(0);
+    const button = mockVideoPlayerWrapped.find(`button`);
     button.simulate(`click`);
 
     expect(onPlayButtonClickHandler).toHaveBeenCalledTimes(1);
@@ -79,10 +77,11 @@ describe(`The component interactivity`, () => {
   });
   it(`reset video`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
-    const onResetHandler = jest.fn();
+    const onPlayButtonClickHandler = jest.fn();
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
       isPlaying = {false}
-      onVideoReset = {onResetHandler}
+      preview = {`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
+      onPlayButtonClick = {onPlayButtonClickHandler}
     />);
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
@@ -91,7 +90,7 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`).at(1);
+    const button = mockVideoPlayerWrapped.find(`button`);
     button.simulate(`click`);
 
     expect(_videoRef.current.load).toHaveBeenCalledTimes(1);

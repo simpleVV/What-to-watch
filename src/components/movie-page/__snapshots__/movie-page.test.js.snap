@@ -270,7 +270,6 @@ Array [
         >
           <div
             className="small-movie-card__image"
-            onMouseLeave={[Function]}
           >
             <video
               style={
@@ -301,7 +300,6 @@ Array [
         >
           <div
             className="small-movie-card__image"
-            onMouseLeave={[Function]}
           >
             <video
               style={

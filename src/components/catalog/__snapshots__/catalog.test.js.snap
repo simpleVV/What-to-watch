@@ -56,7 +56,6 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
     >
       <div
         className="small-movie-card__image"
-        onMouseLeave={[Function]}
       >
         <video
           style={
@@ -87,7 +86,6 @@ exports[`The component is rendered correctly Catalog correctly renders with tran
     >
       <div
         className="small-movie-card__image"
-        onMouseLeave={[Function]}
       >
         <video
           style={

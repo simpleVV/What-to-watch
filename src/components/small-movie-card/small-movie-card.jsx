@@ -33,13 +33,15 @@ class MovieCardTemplate extends PureComponent {
     return <article className="small-movie-card catalog__movies-card"
       onMouseEnter={this._onMovieCardEnterHandler}
       onMouseLeave={this._onMovieCardLeaveHandler}>
-      <VideoPlayerWrapped
-        preview = {preview}
-        poster = {image}
-        isPlaying = {isPlaying}
-        muted = {muted}
-        style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
-      />
+      <div className="small-movie-card__image">
+        <VideoPlayerWrapped
+          preview = {preview}
+          poster = {image}
+          isPlaying = {isPlaying}
+          muted = {muted}
+          style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
+        />
+      </div>
       <h3 className="small-movie-card__title" onClick={onTitleClick}>
         <a className="small-movie-card__link" href={`/films#${id}`}>{title}</a>
       </h3>

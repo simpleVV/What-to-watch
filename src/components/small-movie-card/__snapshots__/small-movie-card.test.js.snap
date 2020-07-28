@@ -8,7 +8,6 @@ exports[`The component is rendered correctly Movie card correctly renders with t
 >
   <div
     className="small-movie-card__image"
-    onMouseLeave={[Function]}
   >
     <video
       style={
