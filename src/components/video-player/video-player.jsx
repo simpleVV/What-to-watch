@@ -5,7 +5,6 @@ import {PropTypes} from 'prop-types';
 const VideoPlayer = (props) => {
   const {
     children,
-    // onVideoReset,
   } = props;
 
   return (

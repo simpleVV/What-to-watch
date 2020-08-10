@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Fragment} from 'react';
 
 import Tabs from '../tabs/tabs.jsx';
+import Header from '../header/header.jsx';
+import Logo from '../logo/logo.jsx';
+import MovieCard from '../movie-card/movie-card.jsx';
+import MovieCardBg from '../movie-card-bg/movie-card-bg.jsx';
+import MovieCardDesc from '../movie-card-desc/movie-card-desc.jsx';
+import MovieCardInfo from '../movie-card-info/movie-card-info.jsx';
+import MovieCardWrap from '../movie-card-wrap/movie-card-wrap.jsx';
+import MovieCardButtons from '../movie-card-buttons/movie-card-buttons.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
 const TabsWrapped = withActiveItem(Tabs);
@@ -27,74 +37,53 @@ const MoviePage = (props) => {
   } = details;
 
   return (
-    <React.Fragment>
-      <section className="movie-card movie-card--full">
+    <Fragment>
+      <MovieCard
+        isMoviePage = {true}
+      >
         <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={bigPoster} alt={title} />
-          </div>
+          <MovieCardBg
+            bigPoster = {bigPoster}
+            title = {title}
+          />
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+          <Header>
+            <Logo/>
+          </Header>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseDate}</span>
-              </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
-            </div>
-          </div>
+          <MovieCardWrap>
+            <MovieCardDesc
+              title = {title}
+              genre = {genre}
+              releaseDate = {releaseDate}
+            >
+              <MovieCardButtons
+                isMoviePage = {true}
+              />
+            </MovieCardDesc>
+          </MovieCardWrap>
         </div>
 
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster} alt={title} width="218" height="327" />
-            </div>
 
+        <MovieCardWrap
+          isTranslateTop = {true}
+        >
+          <MovieCardInfo
+            title = {title}
+            poster = {poster}
+            isMoviePage = {true}
+          >
             <TabsWrapped
               id = {id}
               genre = {genre}
               details = {details}
               reviews = {reviews}
             />
-
-          </div>
-        </div>
-      </section>
+          </MovieCardInfo>
+        </MovieCardWrap>
+      </MovieCard>
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
@@ -106,21 +95,10 @@ const MoviePage = (props) => {
 
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+        <PageFooter/>
 
-          <div className="copyright">
-            <p>Â© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -129,19 +107,13 @@ MoviePage.propTypes = {
   movie: PropTypes.shape(
       {
         id: PropTypes.string.isRequired,
-        genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]).isRequired,
-        title: PropTypes.string.isRequired,
+        genre: MovieCardDesc.genre,
+        title: MovieCardDesc.title,
         details: PropTypes.shape(
             {
-              releaseDate: PropTypes.number.isRequired,
-              bigPoster: PropTypes.string.isRequired,
+              releaseDate: MovieCardDesc.releaseDate,
+              bigPoster: MovieCardBg.bigPoster,
               poster: PropTypes.string.isRequired,
-              description: PropTypes.string.isRequired,
-              ratingLevel: PropTypes.string.isRequired,
-              ratingScore: PropTypes.string.isRequired,
-              ratingCount: PropTypes.number.isRequired,
-              director: PropTypes.string.isRequired,
-              starring: PropTypes.arrayOf(PropTypes.string).isRequired
             }
         ),
         reviews: Tabs.propTypes.reviews

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Movie-card-info correctly renders with transferred isMoviePage prop 1`] = `
+<div
+  className="movie-card__info"
+>
+  <div
+    className="movie-card__poster movie-card__poster--big"
+  >
+    <img
+      alt="Johnny English"
+      height="327"
+      src="img/the-grand-budapest-hotel-poster.jpg"
+      width="218"
+    />
+  </div>
+  <div>
+    Hello World
+  </div>
+</div>
+`;
+
+exports[`The component is rendered correctly Movie-card-info correctly renders with transferred mock data 1`] = `
+<div
+  className="movie-card__info"
+>
+  <div
+    className="movie-card__poster "
+  >
+    <img
+      alt="Johnny English"
+      height="327"
+      src="img/the-grand-budapest-hotel-poster.jpg"
+      width="218"
+    />
+  </div>
+  <div>
+    Hello World
+  </div>
+</div>
+`;

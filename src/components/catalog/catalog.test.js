@@ -20,7 +20,6 @@ const mockMovies = [
   }
 ];
 const mockGenres = [`All genres`, `Crime`, `Comedies`];
-const mockCurrentGenre = `All genres`;
 
 describe(`The component is rendered correctly`, () => {
   it(`Catalog correctly renders with transferrd mock data`, () => {
@@ -29,7 +28,7 @@ describe(`The component is rendered correctly`, () => {
       movies = {mockMovies}
       allGenres = {mockGenres}
       moviesPerPage = {8}
-      currentGenre = {mockCurrentGenre}
+      currentGenre = {`All genres`}
       onGenreClick = {jest.fn}
       onShowMoreButtonClick = {jest.fn}
     />)

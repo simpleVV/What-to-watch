@@ -8,11 +8,12 @@ const withVideo = (Component) => {
       super(props);
 
       this._videoRef = React.createRef();
+
       this.state = {
-        isLoading: true,
         isPlaying: props.isPlaying,
       };
-      this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
+
+      this._playbackActivateHandler = this._playbackActivateHandler.bind(this);
     }
 
     componentDidMount() {
@@ -26,13 +27,14 @@ const withVideo = (Component) => {
 
       if (video) {
         video.muted = muted;
-        video.src = (preview) ? preview : src;
+        video.src = (src) ? src : preview;
         video.poster = poster;
+        video.preLoad = `none`;
 
-        video.oncanplay = () => this.setState({
-          isLoading: false
-        });
-        //
+        // video.oncanplay = () => this.setState({
+        //   isLoading: false
+        // });
+
         // video.onplay = () => this.setState({
         //   isPlaying: true
         // });
@@ -48,10 +50,10 @@ const withVideo = (Component) => {
       const {preview} = this.props;
 
       if (preview) {
-        return (this.props.isPlaying) ? video.play() : video.load();
+        return (video && this.props.isPlaying) ? video.play() : video.load();
       }
 
-      return (this.props.isPlaying) ? video.play() : video.pause();
+      return (video && this.props.isPlaying) ? video.play() : video.pause();
     }
 
     componentWillUnmount() {
@@ -59,13 +61,11 @@ const withVideo = (Component) => {
 
       video.poster = null;
       video.load = null;
-      // video.src = ``;
+      video.src = ``;
     }
 
     render() {
       const {
-        // isLoading,
-        // isPlaying,
       } = this.state;
 
       const {style} = this.props;
@@ -73,9 +73,7 @@ const withVideo = (Component) => {
       return (
         <Component
           {...this.props}
-          // isLoading = {isLoading}
-          // isPlaying = {isPlaying}
-          onPlayButtonClick = {this._playButtonClickHandler}
+          onPlaybackActivate = {this._playbackActivateHandler}
         >
           <video style={style}
             ref={this._videoRef}
@@ -84,8 +82,14 @@ const withVideo = (Component) => {
       );
     }
 
-    _playButtonClickHandler() {
-      this.props.onPlayButtonClick();
+    _playHandler() {
+      this.setState({
+        isPlaying: !this.state.isPlaying
+      });
+    }
+
+    _playbackActivateHandler() {
+      this.props.onPlaybackActivate();
       this.setState({
         isPlaying: !this.state.isPlaying
       });
@@ -94,7 +98,7 @@ const withVideo = (Component) => {
 
   WithVideo.propTypes = {
     isPlaying: PropTypes.bool.isRequired,
-    onPlayButtonClick: PropTypes.func,
+    onPlaybackActivate: PropTypes.func,
     poster: PropTypes.string,
     preview: PropTypes.string,
     src: PropTypes.string,

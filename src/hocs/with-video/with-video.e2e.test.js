@@ -10,12 +10,12 @@ Enzyme.configure({adapter: new Adapter()});
 const MockVideoPlayer = (props) => {
   const {
     children,
-    onPlayButtonClick,
+    onPlaybackActivate,
   } = props;
 
   return (
     <div>
-      <button onClick = {onPlayButtonClick}/>
+      <button onClick = {onPlaybackActivate}/>
       {children}
     </div>
   );
@@ -26,8 +26,7 @@ window.HTMLMediaElement.prototype.pause = () => {};
 window.HTMLMediaElement.prototype.load = () => {};
 
 MockVideoPlayer.propTypes = {
-  onVideoReset: PropTypes.func,
-  onPlayButtonClick: PropTypes.func,
+  onPlaybackActivate: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -40,7 +39,7 @@ describe(`The component interactivity`, () => {
     const onPlayButtonClickHandler = jest.fn();
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
       isPlaying = {true}
-      onPlayButtonClick = {onPlayButtonClickHandler}
+      onPlaybackActivate = {onPlayButtonClickHandler}
     />);
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
@@ -60,7 +59,7 @@ describe(`The component interactivity`, () => {
     const onPlayButtonClickHandler = jest.fn();
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
       isPlaying = {false}
-      onPlayButtonClick = {onPlayButtonClickHandler}
+      onPlaybackActivate = {onPlayButtonClickHandler}
     />);
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
@@ -81,7 +80,7 @@ describe(`The component interactivity`, () => {
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
       isPlaying = {false}
       preview = {`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
-      onPlayButtonClick = {onPlayButtonClickHandler}
+      onPlaybackActivate = {onPlayButtonClickHandler}
     />);
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();

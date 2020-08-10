@@ -1,36 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MovieCardTemplate from '../small-movie-card/small-movie-card.jsx';
+import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const SmallMovieCardWrapped = withActiveItem(SmallMovieCard);
 
 const MovieList = (props) => {
   const {
     movies,
-    onItemActivate,
-    onItemDisable,
-    activeItem
   } = props;
 
   return <div className="catalog__movies-list">
     {movies.map((movie) =>
-      <MovieCardTemplate
-        isPlaying = {activeItem === movie}
+      <SmallMovieCardWrapped
         key = {movie.id}
         movie = {movie}
-        onMovieCardEnter = {() => onItemActivate(movie)}
-        onMovieCardLeave = {onItemDisable}
         onTitleClick = {() => {}}
       />)}
   </div>;
 };
 
 MovieList.propTypes = {
-  activeItem: MovieCardTemplate.propTypes.movie,
   movies: PropTypes.arrayOf(
-      MovieCardTemplate.propTypes.movie
+      SmallMovieCard.propTypes.movie
   ).isRequired,
-  onItemActivate: PropTypes.func.isRequired,
-  onItemDisable: PropTypes.func.isRequired
 };
 
 export default MovieList;

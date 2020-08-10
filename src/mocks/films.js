@@ -38,7 +38,7 @@ const films = [
     genre: `Crime`,
     title: `Snatch`,
     image: `img/snatch.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     details: {
       releaseDate: 2014,
       runTime: `1h 39m`,
@@ -106,7 +106,7 @@ const films = [
     genre: `Dramas`,
     title: `Macbeth`,
     image: `img/macbeth.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     details: {
       releaseDate: 2014,
       runTime: `1h 39m`,
@@ -208,7 +208,7 @@ const films = [
     genre: `Crime`,
     title: `Snatch`,
     image: `img/snatch.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     details: {
       releaseDate: 2014,
       runTime: `1h 39m`,

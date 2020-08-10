@@ -3,7 +3,6 @@ import renderer from 'react-test-renderer';
 
 import MovieReviews from './movie-reviews.jsx';
 
-const mockId = `d90f:fc74:a512:6497:6aab:537:251c:c35a`;
 const mockReviews = [
   {
     author: `Kate Muir`,
@@ -23,7 +22,7 @@ describe(`The component is rendered correctly`, () => {
   it(`Movie reviews correctly renders with transferred mock reviews`, () => {
     const moviePageReviews = renderer
     .create(<MovieReviews
-      id = {mockId}
+      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
       reviews = {mockReviews}
     />)
     .toJSON();

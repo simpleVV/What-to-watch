@@ -7,7 +7,7 @@ import VideoPlayer from '../video-player/video-player.jsx';
 
 const VideoPlayerWrapped = withVideo(VideoPlayer);
 
-class MovieCardTemplate extends PureComponent {
+class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ class MovieCardTemplate extends PureComponent {
     const {
       movie,
       onTitleClick,
-      isPlaying,
+      activeItem,
       muted,
     } = this.props;
 
@@ -37,7 +37,7 @@ class MovieCardTemplate extends PureComponent {
         <VideoPlayerWrapped
           preview = {preview}
           poster = {image}
-          isPlaying = {isPlaying}
+          isPlaying = {activeItem === movie}
           muted = {muted}
           style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
         />
@@ -49,21 +49,28 @@ class MovieCardTemplate extends PureComponent {
   }
 
   _onMovieCardEnterHandler() {
-    this._videoTimeOut = setTimeout(() => this.props.onMovieCardEnter(), this.props.startTimeOut);
+    const {
+      movie,
+      onItemActivate
+    } = this.props;
+
+    this._videoTimeOut = setTimeout(() => onItemActivate(movie), this.props.startTimeOut);
   }
 
   _onMovieCardLeaveHandler() {
-    this.props.onMovieCardLeave();
+    const {onItemDisable} = this.props;
+
+    onItemDisable();
     clearInterval(this._videoTimeOut);
   }
 }
 
-MovieCardTemplate.defaultProps = {
+SmallMovieCard.defaultProps = {
   startTimeOut: 1000,
   muted: true,
 };
 
-MovieCardTemplate.propTypes = {
+SmallMovieCard.propTypes = {
   movie: PropTypes.shape(
       {
         id: PropTypes.string.isRequired,
@@ -72,12 +79,19 @@ MovieCardTemplate.propTypes = {
         preview: VideoPlayer.propTypes.preview
       }
   ),
+  activeItem: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        preview: VideoPlayer.propTypes.preview
+      }
+  ),
   onTitleClick: PropTypes.func.isRequired,
-  onMovieCardEnter: PropTypes.func.isRequired,
-  onMovieCardLeave: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
+  onItemActivate: PropTypes.func.isRequired,
+  onItemDisable: PropTypes.func.isRequired,
   startTimeOut: PropTypes.number.isRequired,
   muted: PropTypes.bool.isRequired,
 };
 
-export default MovieCardTemplate;
+export default SmallMovieCard;

@@ -3,8 +3,6 @@ import renderer from 'react-test-renderer';
 
 import MovieDetails from './movie-details.jsx';
 
-const mockId = `d90f:fc74:a512:6497:6aab:537:251c:c35a`;
-const mockGenre = `Comedies`;
 const mockDetails = {
   releaseDate: 2014,
   bigPoster: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -23,8 +21,8 @@ describe(`The component is rendered correctly`, () => {
   it(`Movie details correctly renders with transferred mock data`, () => {
     const moviePageDetails = renderer
     .create(<MovieDetails
-      id = {mockId}
-      genre = {mockGenre}
+      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
+      genre = {`Comedies`}
       details = {mockDetails}
     />)
     .toJSON();
