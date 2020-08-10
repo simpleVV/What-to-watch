@@ -3,7 +3,6 @@ import renderer from 'react-test-renderer';
 import GenreList from './genre-list.jsx';
 
 const mockGenres = [`All genres`, `Crime`, `Horror`];
-const mockCurrentGenre = `All genres`;
 
 describe(`The component is rendered correctly`, () => {
   it(`Genre list correctly renders with transferred mock genres`, () => {
@@ -12,7 +11,7 @@ describe(`The component is rendered correctly`, () => {
       allGenres = {mockGenres}
       onGenreClick = {jest.fn()}
       onItemActivate = {jest.fn()}
-      activeItem = {mockCurrentGenre}
+      activeItem = {`All genres`}
     />)
       .toJSON();
 

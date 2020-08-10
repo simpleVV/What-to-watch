@@ -1,18 +1,19 @@
 import {ActionCreator, filterMoviesByGenre} from './action-creator.js';
 
+const mockMovieList = [
+  {
+    genre: `Crime`
+  },
+  {
+    genre: `Dramas`
+  },
+  {
+    genre: `Horror`
+  }
+];
+
 describe(`Business logic is correct`, () => {
   it(`Filter movies by genre work correctly`, () => {
-    const mockMovieList = [
-      {
-        genre: `Crime`
-      },
-      {
-        genre: `Dramas`
-      },
-      {
-        genre: `Horror`
-      }
-    ];
 
     expect(filterMoviesByGenre(`Crime`, mockMovieList)).toEqual([
       {
@@ -36,17 +37,6 @@ describe(`Action creator work correctly`, () => {
   });
 
   it(`Action creator return action with default movie list in payload if all genre was selected`, () => {
-    const mockMovieList = [
-      {
-        genre: `Crime`
-      },
-      {
-        genre: `Dramas`
-      },
-      {
-        genre: `Horror`
-      }
-    ];
 
     expect(ActionCreator.filterMovies(`All genres`, mockMovieList)).toEqual({
       type: `FILTER_MOVIES`,
@@ -55,19 +45,8 @@ describe(`Action creator work correctly`, () => {
   });
 
   it(`Action creator return action with specific genre in payload if was selected current genre`, () => {
-    const mockMoviesList = [
-      {
-        genre: `Crime`
-      },
-      {
-        genre: `Dramas`
-      },
-      {
-        genre: `Horror`
-      }
-    ];
 
-    expect(ActionCreator.filterMovies(`Crime`, mockMoviesList)).toEqual({
+    expect(ActionCreator.filterMovies(`Crime`, mockMovieList)).toEqual({
       type: `FILTER_MOVIES`,
       payload: [
         {
@@ -76,7 +55,7 @@ describe(`Action creator work correctly`, () => {
       ]
     });
 
-    expect(ActionCreator.filterMovies(`Dramas`, mockMoviesList)).toEqual({
+    expect(ActionCreator.filterMovies(`Dramas`, mockMovieList)).toEqual({
       type: `FILTER_MOVIES`,
       payload: [
         {

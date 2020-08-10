@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly The Movie-card-wrap correctly renders with transferred prop isTranslateTop 1`] = `
+<div
+  className="movie-card__wrap movie-card__translate-top"
+>
+  <div>
+    Hello World
+  </div>
+</div>
+`;
+
+exports[`The component is rendered correctly The Movie-card-wrap correctly renders without transferred prop isTranslateTop 1`] = `
+<div
+  className="movie-card__wrap "
+>
+  <div>
+    Hello World
+  </div>
+</div>
+`;

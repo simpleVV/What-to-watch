@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import MovieCardTemplate from './small-movie-card.jsx';
+import SmallMovieCard from './small-movie-card.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -20,12 +20,12 @@ const mockMovie = {
 
 describe(`The component interactivity`, () => {
   it(`Will be called callback, if click on movie title`, () => {
-    const movieCard = mount(<MovieCardTemplate
+    const movieCard = mount(<SmallMovieCard
       isPlaying = {false}
       movie = {mockMovie}
       onTitleClick = {titleClickHandler}
-      onMovieCardEnter = {movieCardEnterHandler}
-      onMovieCardLeave = {movieCardLeaveHandler}
+      onItemActivate = {movieCardEnterHandler}
+      onItemDisable = {movieCardLeaveHandler}
     />);
 
     const title = movieCard.find(`.small-movie-card__title`);
@@ -37,11 +37,11 @@ describe(`The component interactivity`, () => {
   it(`Will be called callback after 1 second, when user hover on movie card`, () => {
     jest.useFakeTimers();
 
-    const movieCard = mount(<MovieCardTemplate
+    const movieCard = mount(<SmallMovieCard
       isPlaying = {true}
       movie = {mockMovie}
-      onMovieCardEnter = {movieCardEnterHandler}
-      onMovieCardLeave = {movieCardLeaveHandler}
+      onItemActivate = {movieCardEnterHandler}
+      onItemDisable = {movieCardLeaveHandler}
       onTitleClick = {titleClickHandler}
     />);
 
@@ -54,11 +54,11 @@ describe(`The component interactivity`, () => {
   });
 
   it(`Will be called callback, when user leave movie card`, () => {
-    const movieCard = mount(<MovieCardTemplate
+    const movieCard = mount(<SmallMovieCard
       isPlaying = {false}
       movie = {mockMovie}
-      onMovieCardEnter = {movieCardEnterHandler}
-      onMovieCardLeave = {movieCardLeaveHandler}
+      onItemActivate = {movieCardEnterHandler}
+      onItemDisable = {movieCardLeaveHandler}
       onTitleClick = {titleClickHandler}
     />);
 

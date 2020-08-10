@@ -1,5 +1,17 @@
 import reducer from './reducer.js';
 
+const mockMovieList = [
+  {
+    genre: `Crime`
+  },
+  {
+    genre: `Horror`
+  },
+  {
+    genre: `Dramas`
+  }
+];
+
 describe(`Reducer works correctly`, () => {
   it(`Reducer should change current genre by a given value`, () => {
     expect(reducer({
@@ -23,17 +35,6 @@ describe(`Reducer works correctly`, () => {
   });
 
   it(`Reducer should not filter movies if the genre is not selected`, () => {
-    const mockMovieList = [
-      {
-        genre: `Crime`
-      },
-      {
-        genre: `Horror`
-      },
-      {
-        genre: `Dramas`
-      }
-    ];
 
     expect(reducer({
       currentGenre: `All genres`,
@@ -56,17 +57,7 @@ describe(`Reducer works correctly`, () => {
   });
 
   it(`Reducer should filter movies if the genre selected`, () => {
-    const mockMovieList = [
-      {
-        genre: `Crime`
-      },
-      {
-        genre: `Horror`
-      },
-      {
-        genre: `Dramas`
-      }
-    ];
+
     const mockFilteredMovieList = mockMovieList.filter((it) => it.genre === `Crime`);
 
     expect(reducer({

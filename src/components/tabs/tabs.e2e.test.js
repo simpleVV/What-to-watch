@@ -7,7 +7,6 @@ import Tabs from './tabs.jsx';
 Enzyme.configure({adapter: new Adapter()});
 
 const tabClickHandler = jest.fn();
-const mockId = `d90f:fc74:a512:6497:6aab:537:251c:c35a`;
 const mockDetails = {
   releaseDate: 2014,
   runTime: `1h 39m`,
@@ -33,7 +32,7 @@ const mockReviews = [
 describe(`The component interactivity`, () => {
   it(`Will switch on tab, if user click on it`, () => {
     const tabs = mount(<Tabs
-      id = {mockId}
+      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
       activeItem = {`Overview`}
       genre = {`Crime`}
       details = {mockDetails}

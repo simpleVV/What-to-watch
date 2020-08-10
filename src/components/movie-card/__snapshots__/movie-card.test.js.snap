@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Movie card correctly renders with mock components 1`] = `
+<section
+  className="movie-card "
+>
+  <div>
+    Hello World
+  </div>
+</section>
+`;

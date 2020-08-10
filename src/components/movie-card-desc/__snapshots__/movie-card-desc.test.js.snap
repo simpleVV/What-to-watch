@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Movie card description correctly renders with transferred mock data 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <h2
+    className="movie-card__title"
+  >
+    Johnny English
+  </h2>
+  <p
+    className="movie-card__meta"
+  >
+    <span
+      className="movie-card__genre"
+    >
+      Comedies
+    </span>
+    <span
+      className="movie-card__year"
+    >
+      2014
+    </span>
+  </p>
+  <div />
+</div>
+`;

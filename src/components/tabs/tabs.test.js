@@ -3,7 +3,6 @@ import renderer from 'react-test-renderer';
 
 import Tabs from './tabs.jsx';
 
-const mockId = `d90f:fc74:a512:6497:6aab:537:251c:c35a`;
 const mockDetails = {
   releaseDate: 2014,
   runTime: `1h 39m`,
@@ -30,7 +29,7 @@ describe(`The component is rendered correctly`, () => {
   it(`Tabs correctly renders with transferred mock data`, () => {
     const tabs = renderer
     .create(<Tabs
-      id = {mockId}
+      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
       activeItem = {`Overview`}
       genre = {`Crime`}
       details = {mockDetails}

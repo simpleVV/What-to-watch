@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MovieCardTemplate from './small-movie-card.jsx';
+import SmallMovieCard from './small-movie-card.jsx';
 
 describe(`The component is rendered correctly`, () => {
   it(`Movie card correctly renders with transferred mock-movie`, () => {
@@ -13,12 +13,12 @@ describe(`The component is rendered correctly`, () => {
       preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     };
     const movieCard = renderer
-      .create(<MovieCardTemplate
+      .create(<SmallMovieCard
         isPlaying = {false}
         movie = {mockMovie}
         onTitleClick = {jest.fn()}
-        onMovieCardEnter = {jest.fn()}
-        onMovieCardLeave = {jest.fn()}
+        onItemActivate = {jest.fn()}
+        onItemDisable = {jest.fn()}
       />)
       .toJSON();
 

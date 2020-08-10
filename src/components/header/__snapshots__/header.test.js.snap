@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Header correctly renders with transferred mock children 1`] = `
+<header
+  className="page-header movie-card__head"
+>
+  <div />
+</header>
+`;

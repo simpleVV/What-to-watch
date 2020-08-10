@@ -7,7 +7,6 @@ import GenreList from '../genre-list/genre-list.jsx';
 import CatalogShowMore from '../catalog-show-more/catalog-show-more.jsx';
 
 const GenreListWrapped = withActiveItem(GenreList);
-const MovieListWrapped = withActiveItem(MovieList);
 
 const Catalog = (props) => {
   const {
@@ -32,7 +31,7 @@ const Catalog = (props) => {
         allGenres = {allGenres}
         onGenreClick = {onGenreClick}
       />
-      <MovieListWrapped
+      <MovieList
         movies = {currentMovies}
       />
 
