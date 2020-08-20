@@ -89,6 +89,7 @@ exports[`The component is rendered correctly App correctly renders with transfer
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -186,6 +187,8 @@ exports[`The component is rendered correctly App correctly renders with transfer
             className="small-movie-card__image"
           >
             <video
+              className="player__video"
+              poster="img/johnny-english.jpg"
               style={
                 Object {
                   "height": "100%",

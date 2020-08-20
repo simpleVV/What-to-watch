@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {PureComponent} from 'react';
 
 import withVideo from '../../hocs/with-video/with-video.js';
-import VideoPlayer from '../video-player/video-player.jsx';
+import SmallCardImage from '../small-card-image/small-card-image.jsx';
 
-const VideoPlayerWrapped = withVideo(VideoPlayer);
+const SmallCardImageWrapped = withVideo(SmallCardImage);
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -20,28 +20,26 @@ class SmallMovieCard extends PureComponent {
       movie,
       onTitleClick,
       activeItem,
-      muted,
+      muted
     } = this.props;
 
     const {
       id,
       title,
-      image,
-      preview
     } = movie;
 
     return <article className="small-movie-card catalog__movies-card"
       onMouseEnter={this._onMovieCardEnterHandler}
       onMouseLeave={this._onMovieCardLeaveHandler}>
-      <div className="small-movie-card__image">
-        <VideoPlayerWrapped
-          preview = {preview}
-          poster = {image}
-          isPlaying = {activeItem === movie}
-          muted = {muted}
-          style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
-        />
-      </div>
+
+      <SmallCardImageWrapped
+        preview = {movie.preview}
+        poster = {movie.image}
+        style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
+        muted = {muted}
+        isPlaying = {movie === activeItem}
+      />
+
       <h3 className="small-movie-card__title" onClick={onTitleClick}>
         <a className="small-movie-card__link" href={`/films#${id}`}>{title}</a>
       </h3>
@@ -76,7 +74,7 @@ SmallMovieCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        preview: VideoPlayer.propTypes.preview
+        preview: SmallCardImage.propTypes.preview
       }
   ),
   activeItem: PropTypes.shape(
@@ -84,7 +82,7 @@ SmallMovieCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        preview: VideoPlayer.propTypes.preview
+        preview: SmallCardImage.propTypes.preview
       }
   ),
   onTitleClick: PropTypes.func.isRequired,

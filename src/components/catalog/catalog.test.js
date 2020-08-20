@@ -22,7 +22,7 @@ const mockMovies = [
 const mockGenres = [`All genres`, `Crime`, `Comedies`];
 
 describe(`The component is rendered correctly`, () => {
-  it(`Catalog correctly renders with transferrd mock data`, () => {
+  it(`Catalog correctly renders with transferred mock data`, () => {
     const catalog = renderer
     .create(<Catalog
       movies = {mockMovies}

@@ -23,6 +23,7 @@ const MainScreen = (props) => {
   const {
     title,
     genre,
+    id
   } = movies[0];
 
   const {
@@ -56,7 +57,9 @@ const MainScreen = (props) => {
               genre = {genre}
               releaseDate = {releaseDate}
             >
-              <MovieCardButtons/>
+              <MovieCardButtons
+                id = {id}
+              />
             </MovieCardDesc>
           </MovieCardInfo>
         </MovieCardWrap>

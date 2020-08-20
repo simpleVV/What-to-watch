@@ -11,29 +11,29 @@ const withVideo = (Component) => {
 
       this.state = {
         isPlaying: props.isPlaying,
+        duration: null
       };
 
       this._playbackActivateHandler = this._playbackActivateHandler.bind(this);
+      this._fullScreenActivateHandler = this._fullScreenActivateHandler.bind(this);
     }
 
     componentDidMount() {
       const video = this._videoRef.current;
       const {
-        poster,
         preview,
         src,
-        muted
+        muted,
       } = this.props;
 
       if (video) {
         video.muted = muted;
         video.src = (src) ? src : preview;
-        video.poster = poster;
         video.preLoad = `none`;
 
-        // video.oncanplay = () => this.setState({
-        //   isLoading: false
-        // });
+        video.oncanplay = () => this.setState({
+          duration: video.duration
+        });
 
         // video.onplay = () => this.setState({
         //   isPlaying: true
@@ -53,12 +53,13 @@ const withVideo = (Component) => {
         return (video && this.props.isPlaying) ? video.play() : video.load();
       }
 
-      return (video && this.props.isPlaying) ? video.play() : video.pause();
+      return (video && !this.state.isPlaying) ? video.play() : video.pause();
     }
 
     componentWillUnmount() {
       const video = this._videoRef.current;
 
+      clearInterval(this._durationTimeOut);
       video.poster = null;
       video.load = null;
       video.src = ``;
@@ -66,33 +67,56 @@ const withVideo = (Component) => {
 
     render() {
       const {
-      } = this.state;
+        style,
+        poster
+      } = this.props;
 
-      const {style} = this.props;
+      const {
+        isPlaying,
+        duration
+      } = this.state;
 
       return (
         <Component
           {...this.props}
           onPlaybackActivate = {this._playbackActivateHandler}
+          onFullScreenActivate = {this._fullScreenActivateHandler}
+          duration = {duration}
+          isPlaying = {isPlaying}
+          renderVideo = {() => {
+            return (
+              <video style={style}
+                className="player__video"
+                poster = {poster}
+                ref={this._videoRef}
+              />
+            );
+          }}
         >
-          <video style={style}
-            ref={this._videoRef}
-          />
         </Component>
       );
     }
 
-    _playHandler() {
+    _playbackActivateHandler() {
       this.setState({
-        isPlaying: !this.state.isPlaying
+        isPlaying: !this.state.isPlaying,
       });
     }
 
-    _playbackActivateHandler() {
-      this.props.onPlaybackActivate();
-      this.setState({
-        isPlaying: !this.state.isPlaying
-      });
+    _fullScreenActivateHandler() {
+      const video = this._videoRef.current;
+
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      }
+
+      if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      }
+
+      if (video.mozRequestFullscreen) {
+        video.mozRequestFullscreen();
+      }
     }
   }
 

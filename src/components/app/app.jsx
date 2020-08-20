@@ -6,6 +6,7 @@ import {ActionCreator} from '../../reducer/action-creator.js';
 
 import MainScreen from '../main-screen/main-screen.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import VideoPlayerPage from '../video-player-page/video-player-page.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -27,6 +28,10 @@ class App extends PureComponent {
       onShowMoreButtonClick
     } = this.props;
 
+    const id = location.hash.slice(1);
+    const currentFilm = id ? moviesList.find((movie) => movie.id === id) : filteredMovies[0];
+    const similarFilms = moviesList.filter((movie) => movie.genre === currentFilm.genre);
+
     switch (location.pathname) {
       case `/`:
         return (
@@ -42,13 +47,17 @@ class App extends PureComponent {
           />
         );
       case `/films`:
-        const id = location.hash.slice(1);
-        const currentFilm = moviesList.find((movie) => movie.id === id);
-        const similarFilms = moviesList.filter((movie) => movie.genre === currentFilm.genre);
         return (
           <MoviePage
             movie = {currentFilm}
             similarMovies = {similarFilms}
+          />
+        );
+      case `/player`:
+        return (
+          <VideoPlayerPage
+            movie = {currentFilm}
+            isPlaying = {true}
           />
         );
     }

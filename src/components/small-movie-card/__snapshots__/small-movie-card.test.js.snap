@@ -10,6 +10,8 @@ exports[`The component is rendered correctly Movie card correctly renders with t
     className="small-movie-card__image"
   >
     <video
+      className="player__video"
+      poster="img/johnny-english.jpg"
       style={
         Object {
           "height": "100%",
