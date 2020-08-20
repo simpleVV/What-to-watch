@@ -9,14 +9,22 @@ Enzyme.configure({adapter: new Adapter()});
 
 const MockVideoPlayer = (props) => {
   const {
-    children,
+    renderVideo,
     onPlaybackActivate,
+    onFullScreenActivate
   } = props;
 
   return (
     <div>
-      <button onClick = {onPlaybackActivate}/>
-      {children}
+      <button
+        className="play"
+        onClick = {onPlaybackActivate}
+      />
+      <button
+        className="fullScreen"
+        onClick = {onFullScreenActivate}
+      />
+      {renderVideo()}
     </div>
   );
 };
@@ -27,10 +35,8 @@ window.HTMLMediaElement.prototype.load = () => {};
 
 MockVideoPlayer.propTypes = {
   onPlaybackActivate: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+  onFullScreenActivate: PropTypes.func,
+  renderVideo: PropTypes.func.isRequired
 };
 
 describe(`The component interactivity`, () => {
@@ -48,10 +54,9 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`);
+    const button = mockVideoPlayerWrapped.find(`.play`);
     button.simulate(`click`);
 
-    expect(onPlayButtonClickHandler).toHaveBeenCalledTimes(1);
     expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
   });
   it(`Turn off video`, () => {
@@ -68,10 +73,9 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`);
+    const button = mockVideoPlayerWrapped.find(`.play`);
     button.simulate(`click`);
 
-    expect(onPlayButtonClickHandler).toHaveBeenCalledTimes(1);
     expect(_videoRef.current.pause).toHaveBeenCalledTimes(1);
   });
   it(`reset video`, () => {
@@ -89,9 +93,26 @@ describe(`The component interactivity`, () => {
 
     mockVideoPlayerWrapped.instance().componentDidMount();
 
-    const button = mockVideoPlayerWrapped.find(`button`);
+    const button = mockVideoPlayerWrapped.find(`.play`);
     button.simulate(`click`);
 
     expect(_videoRef.current.load).toHaveBeenCalledTimes(1);
+  });
+  it(`Set full screen`, () => {
+    HTMLVideoElement.prototype.requestFullscreen = jest.fn();
+
+    const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
+    const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
+      isPlaying = {false}
+      onFullScreenActivate = {jest.fn()}
+    />);
+
+    const button = mockVideoPlayerWrapped.find(`.fullScreen`);
+
+    button.simulate(`click`);
+
+    expect(HTMLVideoElement.prototype.requestFullscreen).toHaveBeenCalledTimes(1);
+
+
   });
 });

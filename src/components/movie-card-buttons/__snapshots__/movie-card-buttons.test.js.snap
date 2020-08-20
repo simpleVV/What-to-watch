@@ -6,6 +6,7 @@ exports[`The component is rendered correctly Movie-card-buttons component correc
 >
   <button
     className="btn btn--play movie-card__button"
+    onClick={[Function]}
     type="button"
   >
     <svg
@@ -53,6 +54,7 @@ exports[`The component is rendered correctly Movie-card-buttons component correc
 >
   <button
     className="btn btn--play movie-card__button"
+    onClick={[Function]}
     type="button"
   >
     <svg
