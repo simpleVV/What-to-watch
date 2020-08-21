@@ -161,7 +161,9 @@ Array [
         </div>
         <div
           className="player__time-value"
-        />
+        >
+          10:10:10
+        </div>
       </div>
       <div
         className="player__controls-row"
