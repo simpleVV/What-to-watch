@@ -8,7 +8,7 @@ const VideoPlayer = (props) => {
     onPlaybackActivate,
     onFullScreenActivate,
     isPlaying,
-    duration,
+    // duration,
   } = props;
 
   return (
@@ -27,7 +27,9 @@ const VideoPlayer = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <VideoPlayerTimer
-            duration = {duration}
+            seconds = {10}
+            minutes = {10}
+            hours = {10}
           />
         </div>
 
@@ -71,7 +73,7 @@ VideoPlayer.propTypes = {
   onPlaybackActivate: PropTypes.func.isRequired,
   onFullScreenActivate: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  duration: VideoPlayerTimer.propTypes.duration
+  // duration: VideoPlayerTimer.propTypes.duration
 };
 
 export default VideoPlayer;

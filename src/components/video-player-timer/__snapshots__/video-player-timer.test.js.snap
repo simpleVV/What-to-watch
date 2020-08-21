@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The component is rendered correctly Video player timer correctly renders with transferrd mock time 1`] = `
+Array [
+  <div
+    className="player__time"
+  >
+    <progress
+      className="player__progress"
+      max="100"
+      value="30"
+    />
+    <div
+      className="player__toggler"
+      style={
+        Object {
+          "left": "30%",
+        }
+      }
+    >
+      Toggler
+    </div>
+  </div>,
+  <div
+    className="player__time-value"
+  >
+    1:34:10
+  </div>,
+]
+`;
