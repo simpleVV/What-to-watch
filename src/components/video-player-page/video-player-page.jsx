@@ -15,6 +15,7 @@ const VideoPlayerPage = (props) => {
   const {
     image,
     preview,
+    title,
   } = movie;
 
   return (
@@ -52,10 +53,11 @@ const VideoPlayerPage = (props) => {
       </div>
 
       <VideoPlayerWrapped
-        isPlaying = {true}
+        isPlaying = {false}
         poster = {image}
         src = {preview}
         muted = {false}
+        title = {title}
       />
 
     </Fragment>
@@ -67,6 +69,7 @@ VideoPlayerPage.propTypes = {
       {
         image: PropTypes.string.isRequired,
         preview: PropTypes.preview,
+        title: PropTypes.string.isRequired
       }
   )
 };

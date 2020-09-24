@@ -1,13 +1,8 @@
 import React from 'react';
 
 import Catalog from '../catalog/catalog.jsx';
-import MovieCard from '../movie-card/movie-card.jsx';
 import Header from '../header/header.jsx';
 import Logo from '../logo/logo.jsx';
-import MovieCardBg from '../movie-card-bg/movie-card-bg.jsx';
-import MovieCardDesc from '../movie-card-desc/movie-card-desc.jsx';
-import MovieCardInfo from '../movie-card-info/movie-card-info.jsx';
-import MovieCardWrap from '../movie-card-wrap/movie-card-wrap.jsx';
 import MovieCardButtons from '../movie-card-buttons/movie-card-buttons.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 
@@ -34,36 +29,38 @@ const MainScreen = (props) => {
 
   return (
     <main>
-      <MovieCard
-        isMoviePage = {false}
-      >
-        <MovieCardBg
-          bigPoster = {bigPoster}
-          title = {title}
-        />
+      <section className="movie-card">
+        <div className="movie-card__bg">
+          <img src={bigPoster} alt={title}/>
+        </div>
+
         <h1 className="visually-hidden">WTW</h1>
 
         <Header>
           <Logo/>
         </Header>
 
-        <MovieCardWrap>
-          <MovieCardInfo
-            title = {title}
-            poster = {poster}
-          >
-            <MovieCardDesc
-              title = {title}
-              genre = {genre}
-              releaseDate = {releaseDate}
-            >
+        <div className="movie-card__wrap">
+          <div className="movie-card__info">
+            <div className="movie-card__poster">
+              <img src={poster} alt={title} width="218" height="327"/>
+            </div>
+
+            <div className="movie-card__desc">
+              <h2 className="movie-card__title">{title}</h2>
+              <p className="movie-card__meta">
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{releaseDate}</span>
+              </p>
+
               <MovieCardButtons
                 id = {id}
               />
-            </MovieCardDesc>
-          </MovieCardInfo>
-        </MovieCardWrap>
-      </MovieCard>
+
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="page-content">
         <Catalog

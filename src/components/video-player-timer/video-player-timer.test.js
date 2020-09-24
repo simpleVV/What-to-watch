@@ -7,9 +7,8 @@ describe(`The component is rendered correctly`, () => {
   it(`Video player timer correctly renders with transferrd mock time`, () => {
     const videoPlayerTimer = renderer
     .create(<VideoPlayerTimer
-      seconds = {10}
-      minutes = {34}
-      hours = {1}
+      duration = {33}
+      progress = {6}
     />)
     .toJSON();
 

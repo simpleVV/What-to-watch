@@ -9,40 +9,54 @@ const withVideo = (Component) => {
 
       this._videoRef = React.createRef();
 
-      this.state = {
-        isPlaying: props.isPlaying,
-        duration: null
+      this.initialState = {
+        isPlaying: this.props.isPlaying,
+        duration: null,
+        progress: null
       };
+
+      this.state = this.initialState;
 
       this._playbackActivateHandler = this._playbackActivateHandler.bind(this);
       this._fullScreenActivateHandler = this._fullScreenActivateHandler.bind(this);
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
       const {
         preview,
         src,
         muted,
       } = this.props;
 
-      if (video) {
+      const promise = new Promise((resolve, reject) => {
+        const video = this._videoRef.current;
+
+        if (!video) {
+          reject(`Reference to video is not defined`);
+        }
+
+        resolve(video);
+      });
+
+      promise.then((video) => {
         video.muted = muted;
         video.src = (src) ? src : preview;
         video.preLoad = `none`;
 
         video.oncanplay = () => this.setState({
-          duration: video.duration
+          duration: Math.floor(video.duration)
         });
 
-        // video.onplay = () => this.setState({
-        //   isPlaying: true
-        // });
-        //
-        // video.onpause = () => this.setState({
-        //   isPlaying: false
-        // });
-      }
+        video.onended = () => {
+          this.setState(this.initialState);
+        };
+
+        if (!preview) {
+          video.ontimeupdate = () => this.setState({
+            progress: Math.floor(video.currentTime)
+          });
+        }
+      });
     }
 
     componentDidUpdate() {
@@ -53,13 +67,16 @@ const withVideo = (Component) => {
         return (video && this.props.isPlaying) ? video.play() : video.load();
       }
 
-      return (video && !this.state.isPlaying) ? video.play() : video.pause();
+      return (video && this.state.isPlaying) ? video.play() : video.pause();
     }
 
     componentWillUnmount() {
       const video = this._videoRef.current;
 
       clearInterval(this._durationTimeOut);
+      video.oncanplay = null;
+      video.onended = null;
+      video.ontimeupdate = null;
       video.poster = null;
       video.load = null;
       video.src = ``;
@@ -68,12 +85,13 @@ const withVideo = (Component) => {
     render() {
       const {
         style,
-        poster
+        poster,
       } = this.props;
 
       const {
         isPlaying,
-        duration
+        duration,
+        progress
       } = this.state;
 
       return (
@@ -82,6 +100,7 @@ const withVideo = (Component) => {
           onPlaybackActivate = {this._playbackActivateHandler}
           onFullScreenActivate = {this._fullScreenActivateHandler}
           duration = {duration}
+          progress = {progress}
           isPlaying = {isPlaying}
           renderVideo = {() => {
             return (
@@ -92,8 +111,7 @@ const withVideo = (Component) => {
               />
             );
           }}
-        >
-        </Component>
+        />
       );
     }
 
