@@ -44,7 +44,7 @@ describe(`The component interactivity`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
     const onPlayButtonClickHandler = jest.fn();
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {true}
+      isPlaying = {false}
       onPlaybackActivate = {onPlayButtonClickHandler}
     />);
 
@@ -63,7 +63,7 @@ describe(`The component interactivity`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
     const onPlayButtonClickHandler = jest.fn();
     const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {false}
+      isPlaying = {true}
       onPlaybackActivate = {onPlayButtonClickHandler}
     />);
 

@@ -12,6 +12,8 @@ describe(`The component is rendered correctly`, () => {
       onFullScreenActivate = {jest.fn()}
       isPlaying = {false}
       duration = {30}
+      progress = {10}
+      title = {`Snatch`}
     />)
     .toJSON();
 
@@ -26,6 +28,8 @@ describe(`The component is rendered correctly`, () => {
         onFullScreenActivate = {jest.fn()}
         isPlaying = {true}
         duration = {20}
+        progress = {7}
+        title = {`Snatch`}
       />)
       .toJSON();
 

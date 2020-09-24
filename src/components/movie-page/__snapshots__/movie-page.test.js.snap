@@ -50,7 +50,7 @@ Array [
         </div>
       </header>
       <div
-        className="movie-card__wrap "
+        className="movie-card__wrap"
       >
         <div
           className="movie-card__desc"

@@ -8,7 +8,9 @@ const VideoPlayer = (props) => {
     onPlaybackActivate,
     onFullScreenActivate,
     isPlaying,
-    // duration,
+    duration,
+    progress,
+    title
   } = props;
 
   return (
@@ -27,9 +29,9 @@ const VideoPlayer = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <VideoPlayerTimer
-            seconds = {10}
-            minutes = {10}
-            hours = {10}
+            isTimerStart = {isPlaying}
+            duration = {duration}
+            progress = {progress}
           />
         </div>
 
@@ -39,7 +41,7 @@ const VideoPlayer = (props) => {
             className="player__play"
             onClick = {onPlaybackActivate}
           >
-            {isPlaying ?
+            {!isPlaying ?
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
@@ -50,7 +52,7 @@ const VideoPlayer = (props) => {
             }
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{title}</div>
 
           <button
             type="button"
@@ -70,10 +72,12 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
   renderVideo: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   onPlaybackActivate: PropTypes.func.isRequired,
   onFullScreenActivate: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  // duration: VideoPlayerTimer.propTypes.duration
+  duration: PropTypes.number,
+  progress: PropTypes.number,
 };
 
 export default VideoPlayer;

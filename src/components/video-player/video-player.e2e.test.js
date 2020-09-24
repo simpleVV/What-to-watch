@@ -17,6 +17,7 @@ describe(`The component interactivity`, () => {
       onFullScreenActivate = {fullScreenActivateHandler}
       isPlaying = {true}
       duration = {30}
+      title = {`Snatch`}
     />);
 
     const playButton = videoPlayer.find(`.player__play`);
@@ -32,6 +33,7 @@ describe(`The component interactivity`, () => {
       onFullScreenActivate = {fullScreenActivateHandler}
       isPlaying = {false}
       duration = {20}
+      title = {`Snatch`}
     />);
 
     const fullScreenButton = videoPlayer.find(`.player__full-screen`);

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 import withActiveItem from './with-active-item.js';
 
 Enzyme.configure({adapter: new Adapter()});
