@@ -1,5 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
 import {App} from './app.jsx';
 
 const mockMovies = [
@@ -28,22 +31,26 @@ const mockMovies = [
     }
   },
 ];
-const mockFilteredMovies = mockMovies.filter((it) => it.genre === `Comedies`);
-const mockGenres = [`All genres`, `Crime`, `Comedies`];
+const mockStore = createStore(() => ({
+  currentGenre: `All genres`,
+  allGenres: [`All genres`, `Crime`, `Dramas`],
+  fullMovieList: mockMovies,
+  filteredMovies: mockMovies,
+  moviesPerPage: 8
+}));
 
+const mockFilteredMovies = mockMovies.filter((it) => it.genre === `Comedies`);
 
 describe(`The component is rendered correctly`, () => {
   it(`App correctly renders with transferred data`, () => {
     const app = renderer
-    .create(<App
-      fullMovieList = {mockMovies}
-      filteredMovies = {mockFilteredMovies}
-      moviesPerPage = {8}
-      allGenres = {mockGenres}
-      onFilterItemClick = {jest.fn()}
-      onShowMoreButtonClick = {jest.fn()}
-    />)
-      .toJSON();
+    .create(
+        <Provider store = {mockStore}>
+          <App
+            filteredMovies = {mockFilteredMovies}
+          />
+        </Provider
+        >).toJSON();
 
     expect(app).toMatchSnapshot();
   });

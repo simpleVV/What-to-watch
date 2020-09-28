@@ -171,7 +171,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
             href="#"
             onClick={[Function]}
           >
-            Comedies
+            Dramas
           </a>
         </li>
       </ul>
@@ -248,7 +248,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
       >
         <button
           className="catalog__button visually-hidden"
-          onClick={[MockFunction]}
+          onClick={[Function]}
           type="button"
         >
           Show more

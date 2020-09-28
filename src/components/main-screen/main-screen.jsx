@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Catalog from '../catalog/catalog.jsx';
 import Header from '../header/header.jsx';
@@ -8,11 +9,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 
 const MainScreen = (props) => {
   const {
-    allGenres,
-    onGenreClick,
-    moviesPerPage,
     movies,
-    onShowMoreButtonClick,
   } = props;
 
   const {
@@ -64,11 +61,7 @@ const MainScreen = (props) => {
 
       <div className="page-content">
         <Catalog
-          allGenres = {allGenres}
-          onGenreClick = {onGenreClick}
-          moviesPerPage = {moviesPerPage}
           movies = {movies}
-          onShowMoreButtonClick={onShowMoreButtonClick}
         />
 
         <PageFooter/>
@@ -79,11 +72,23 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movies: Catalog.propTypes.movies,
-  moviesPerPage: Catalog.propTypes.moviesPerPage,
-  allGenres: Catalog.propTypes.allGenres,
-  onGenreClick: Catalog.propTypes.onGenreClick,
-  onShowMoreButtonClick: Catalog.propTypes.onShowMoreButtonClick
+  movies: PropTypes.arrayOf(
+      PropTypes.shape(
+          {
+            id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            preview: PropTypes.string.isRequired,
+            genre: PropTypes.string.isRequired,
+            details: PropTypes.shape(
+                {
+                  bigPoster: PropTypes.string.isRequired,
+                  poster: PropTypes.string.isRequired,
+                  releaseDate: PropTypes.number.isRequired
+                })
+          }
+      )
+  ),
 };
 
 export default MainScreen;

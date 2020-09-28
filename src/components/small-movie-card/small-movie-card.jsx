@@ -74,7 +74,7 @@ SmallMovieCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        preview: SmallCardImage.propTypes.preview
+        preview: PropTypes.preview
       }
   ),
   activeItem: PropTypes.shape(
@@ -82,7 +82,6 @@ SmallMovieCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        preview: SmallCardImage.propTypes.preview
       }
   ),
   onTitleClick: PropTypes.func.isRequired,
