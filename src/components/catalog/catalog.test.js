@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Catalog from './catalog.jsx';
+import {Catalog} from './catalog.jsx';
 
 const mockMovies = [
   {
@@ -25,7 +25,9 @@ describe(`The component is rendered correctly`, () => {
   it(`Catalog correctly renders with transferred mock data`, () => {
     const catalog = renderer
     .create(<Catalog
-      movies = {mockMovies}
+      filteredMovies = {mockMovies}
+      fullMovieList = {mockMovies}
+      onFilterItemClick = {jest.fn}
       allGenres = {mockGenres}
       moviesPerPage = {8}
       currentGenre = {`All genres`}

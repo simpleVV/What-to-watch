@@ -1,8 +1,6 @@
 import React from 'react';
 import {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/action-creator.js';
 
 import MainScreen from '../main-screen/main-screen.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
@@ -14,18 +12,14 @@ class App extends PureComponent {
   }
 
   render() {
-    const fullMovieList = this.props.fullMovieList;
+    const filteredMovies = this.props.filteredMovies;
 
-    return this._getCurrentScreen(fullMovieList);
+    return this._getCurrentScreen(filteredMovies);
   }
 
   _getCurrentScreen(moviesList) {
     const {
-      allGenres,
       filteredMovies,
-      moviesPerPage,
-      onFilterItemClick,
-      onShowMoreButtonClick
     } = this.props;
 
     const id = location.hash.slice(1);
@@ -37,13 +31,6 @@ class App extends PureComponent {
         return (
           <MainScreen
             movies = {filteredMovies}
-            allGenres = {allGenres}
-            moviesPerPage = {moviesPerPage}
-            onGenreClick = {(genre) => onFilterItemClick(
-                genre,
-                moviesList
-            )}
-            onShowMoreButtonClick = {() => onShowMoreButtonClick(moviesPerPage, moviesList.length)}
           />
         );
       case `/films`:
@@ -66,30 +53,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  allGenres: MainScreen.propTypes.allGenres,
-  fullMovieList: MainScreen.propTypes.movies,
   filteredMovies: MainScreen.propTypes.movies,
-  moviesPerPage: MainScreen.propTypes.moviesPerPage,
-  onFilterItemClick: PropTypes.func.isRequired,
-  onShowMoreButtonClick: MainScreen.propTypes.onShowMoreButtonClick
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  allGenres: state.allGenres,
-  fullMovieList: state.fullMovieList,
   filteredMovies: state.filteredMovies,
-  moviesPerPage: state.moviesPerPage
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilterItemClick: (genre, movieList) => {
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filterMovies(genre, movieList));
-  },
-  onShowMoreButtonClick: (currentMovies, allMovies) => {
-    dispatch(ActionCreator.showMoreMovies(currentMovies, allMovies));
-  }
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

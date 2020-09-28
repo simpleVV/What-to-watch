@@ -1,4 +1,7 @@
 import React from 'react';
+import {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer/action-creator.js';
 import PropTypes from 'prop-types';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -8,47 +11,88 @@ import CatalogShowMore from '../catalog-show-more/catalog-show-more.jsx';
 
 const GenreListWrapped = withActiveItem(GenreList);
 
-const Catalog = (props) => {
-  const {
-    allGenres,
-    moviesPerPage,
-    movies,
-    onGenreClick,
-    onShowMoreButtonClick,
-  } = props;
+class Catalog extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const currentMovies = [...movies];
-  currentMovies.length = moviesPerPage;
+    this._onGenreClickHandler = this._onGenreClickHandler.bind(this);
+  }
 
-  const isMaxMoviesPerPage = (moviesPerPage >= movies.length) ? true :
-    false;
+  render() {
+    const {
+      allGenres,
+      moviesPerPage,
+      filteredMovies,
+      fullMovieList,
+      onShowMoreButtonClick
+    } = this.props;
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+    const currentMovies = [...filteredMovies];
+    currentMovies.length = moviesPerPage;
 
-      <GenreListWrapped
-        allGenres = {allGenres}
-        onGenreClick = {onGenreClick}
-      />
-      <MovieList
-        movies = {currentMovies}
-      />
+    const isMaxMoviesPerPage = (moviesPerPage >= filteredMovies.length) ? true :
+      false;
 
-      <CatalogShowMore
-        onShowMoreButtonClick={onShowMoreButtonClick}
-        maxMoviesPerPage = {isMaxMoviesPerPage}
-      />
-    </section>
-  );
-};
+    return (
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+        <GenreListWrapped
+          allGenres = {allGenres}
+          onGenreClick = {(genre) => this._onGenreClickHandler(genre)}
+        />
+        <MovieList
+          movies = {currentMovies}
+        />
+
+        <CatalogShowMore
+          maxMoviesPerPage = {isMaxMoviesPerPage}
+          onShowMoreButtonClick={() => onShowMoreButtonClick(moviesPerPage, fullMovieList.length)}
+        />
+      </section>
+    );
+  }
+
+  _onGenreClickHandler(genre) {
+    const {
+      currentGenre,
+      onFilterItemClick,
+      fullMovieList
+    } = this.props;
+
+    return (genre === currentGenre) ? null : onFilterItemClick(genre, fullMovieList);
+  }
+}
 
 Catalog.propTypes = {
-  movies: MovieList.propTypes.movies,
-  allGenres: GenreList.propTypes.allGenres,
-  onGenreClick: GenreList.propTypes.onGenreClick,
+  filteredMovies: MovieList.propTypes.movies,
+  fullMovieList: MovieList.propTypes.movies,
+  allGenres: PropTypes.arrayOf(
+      PropTypes.oneOf([`All genres`, `Crime`, `Comedies`, `Dramas`, `Thrillers`, `Horror`])
+  ).isRequired,
+  currentGenre: PropTypes.string.isRequired,
+  onFilterItemClick: PropTypes.func.isRequired,
   moviesPerPage: PropTypes.number.isRequired,
   onShowMoreButtonClick: CatalogShowMore.propTypes.onShowMoreButtonClick
 };
 
-export default Catalog;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  allGenres: state.allGenres,
+  fullMovieList: state.fullMovieList,
+  filteredMovies: state.filteredMovies,
+  currentGenre: state.currentGenre,
+  moviesPerPage: state.moviesPerPage
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterItemClick: (genre, movieList) => {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.filterMovies(genre, movieList));
+  },
+  onShowMoreButtonClick: (currentMovies, allMovies) => {
+    dispatch(ActionCreator.showMoreMovies(currentMovies, allMovies));
+  }
+});
+
+export {Catalog};
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

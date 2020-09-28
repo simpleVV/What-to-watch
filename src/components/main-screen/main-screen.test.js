@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 import MainScreen from './main-screen.jsx';
 
@@ -29,20 +31,24 @@ const mockMovies = [
     }
   }
 ];
-const mockGenres = [`All genres`, `Crime`, `Comedies`];
+const mockStore = createStore(() => ({
+  currentGenre: `All genres`,
+  allGenres: [`All genres`, `Crime`, `Dramas`],
+  fullMovieList: mockMovies,
+  filteredMovies: mockMovies,
+  moviesPerPage: 8
+}));
 
 describe(`The component is rendered correctly`, () => {
   it(`Main screen correctly renders with transferred mock-movies title`, () => {
     const mainScreen = renderer
-    .create(<MainScreen
-      movies = {mockMovies}
-      currentGenre = {`All genres`}
-      moviesPerPage = {8}
-      allGenres = {mockGenres}
-      onGenreClick = {jest.fn()}
-      onShowMoreButtonClick = {jest.fn()}
-    />)
-    .toJSON();
+    .create(
+        <Provider store = {mockStore}>
+          <MainScreen
+            movies = {mockMovies}
+          />
+        </Provider>
+    ).toJSON();
 
     expect(mainScreen).toMatchSnapshot();
   });
