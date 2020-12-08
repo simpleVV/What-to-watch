@@ -53,10 +53,10 @@ const MovieDetails = (props) => {
 
 MovieDetails.propTypes = {
   id: PropTypes.string.isRequired,
-  genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]),
+  genre: PropTypes.string.isRequired,
   details: PropTypes.shape(
       {
-        runTime: PropTypes.string.isRequired,
+        runTime: PropTypes.number.isRequired,
         releaseDate: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf[PropTypes.string.isRequired]

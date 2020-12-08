@@ -14,6 +14,7 @@ describe(`The component interactivity`, () => {
     const itemActiveHandler = jest.fn();
     const genreList = mount(<GenreList
       allGenres = {mockGenres}
+      currentGenre = {`All genres`}
       onGenreClick = {genreClickHandler}
       onItemActivate = {itemActiveHandler}
     />);
@@ -31,6 +32,7 @@ describe(`The component interactivity`, () => {
     const itemActiveHandler = jest.fn();
     const genreList = mount(<GenreList
       allGenres = {mockGenres}
+      currentGenre = {`Horror`}
       onGenreClick = {genreClickHandler}
       onItemActivate = {itemActiveHandler}
     />);

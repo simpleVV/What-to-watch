@@ -252,6 +252,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -272,11 +273,10 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="/films#d90f:fc74:a512:6497:6aab:537:251c:c35a"
+              href="movie-page.html"
             >
               Johnny English
             </a>
@@ -284,6 +284,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -304,11 +305,10 @@ Array [
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="/films#94b2:9524:2d16:7525:dcb8:9540:7ba0:3afc"
+              href="movie-page.html"
             >
               Snatch
             </a>

@@ -12,7 +12,7 @@ describe(`The component interactivity`, () => {
   it(`Will be called callback, if user click on button`, () => {
     const catalogShowMore = shallow(<CatalogShowMore
       onShowMoreButtonClick={showMoreButtonClickHandler}
-      maxMoviesPerPage = {false}
+      maxFilmsPerPage = {false}
     />);
 
     const showMoreButton = catalogShowMore.find(`.catalog__button`);

@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import MovieList from './movie-list.jsx';
 
-const mockMovies = [
+const mockFilms = [
   {
     id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
     genre: `Comedies`,
@@ -39,9 +39,10 @@ describe(`The component is rendered correctly`, () => {
   it(`Movie list correctly renders with transferred mock-movies`, () => {
     const movieList = renderer
     .create(<MovieList
-      movies = {mockMovies}
+      films = {mockFilms}
       onItemActivate = {jest.fn()}
       onItemDisable = {jest.fn()}
+      onMovieCardClick = {jest.fn()}
     />)
     .toJSON();
 

@@ -5,7 +5,7 @@ import SmallMovieCard from './small-movie-card.jsx';
 
 describe(`The component is rendered correctly`, () => {
   it(`Movie card correctly renders with transferred mock-movie`, () => {
-    const mockMovie = {
+    const mockFilm = {
       id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
       genre: `Comedies`,
       title: `Johnny English`,
@@ -15,10 +15,11 @@ describe(`The component is rendered correctly`, () => {
     const movieCard = renderer
       .create(<SmallMovieCard
         isPlaying = {false}
-        movie = {mockMovie}
+        film = {mockFilm}
         onTitleClick = {jest.fn()}
         onItemActivate = {jest.fn()}
         onItemDisable = {jest.fn()}
+        onMovieCardClick = {jest.fn()}
       />)
       .toJSON();
 

@@ -9,7 +9,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
       className="movie-card__bg"
     >
       <img
-        alt="Johnny English"
+        alt="Snatch"
         src="img/bg-the-grand-budapest-hotel.jpg"
       />
     </div>
@@ -56,7 +56,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           className="movie-card__poster"
         >
           <img
-            alt="Johnny English"
+            alt="Snatch"
             height="327"
             src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -68,7 +68,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           <h2
             className="movie-card__title"
           >
-            Johnny English
+            Snatch
           </h2>
           <p
             className="movie-card__meta"
@@ -76,7 +76,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
             <span
               className="movie-card__genre"
             >
-              Comedies
+              Crime
             </span>
             <span
               className="movie-card__year"
@@ -180,6 +180,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -200,11 +201,10 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="/films#d90f:fc74:a512:6497:6aab:537:251c:c35a"
+              href="movie-page.html"
             >
               Johnny English
             </a>
@@ -212,6 +212,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -232,11 +233,10 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
-              href="/films#94b2:9524:2d16:7525:dcb8:9540:7ba0:3afc"
+              href="movie-page.html"
             >
               Snatch
             </a>

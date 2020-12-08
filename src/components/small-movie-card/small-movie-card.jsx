@@ -11,55 +11,72 @@ class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._onMovieCardEnterHandler = this._onMovieCardEnterHandler.bind(this);
-    this._onMovieCardLeaveHandler = this._onMovieCardLeaveHandler.bind(this);
+    this._videoTimeOut = null;
+    this._movieCardEnterHandler = this._movieCardEnterHandler.bind(this);
+    this._movieCardLeaveHandler = this._movieCardLeaveHandler.bind(this);
+    this._movieCardClickHandler = this._movieCardClickHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    this._movieCardLeaveHandler();
   }
 
   render() {
     const {
-      movie,
-      onTitleClick,
+      film,
       activeItem,
       muted
     } = this.props;
 
     const {
-      id,
       title,
-    } = movie;
+    } = film;
 
     return <article className="small-movie-card catalog__movies-card"
-      onMouseEnter={this._onMovieCardEnterHandler}
-      onMouseLeave={this._onMovieCardLeaveHandler}>
+      onMouseEnter={this._movieCardEnterHandler}
+      onMouseLeave={this._movieCardLeaveHandler}
+      onClick={this._movieCardClickHandler}>
 
       <SmallCardImageWrapped
-        preview = {movie.preview}
-        poster = {movie.image}
+        preview = {film.preview}
+        poster = {film.image}
         style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
         muted = {muted}
-        isPlaying = {movie === activeItem}
+        isPlaying = {film === activeItem}
       />
 
-      <h3 className="small-movie-card__title" onClick={onTitleClick}>
-        <a className="small-movie-card__link" href={`/films#${id}`}>{title}</a>
+      <h3 className="small-movie-card__title">
+        <a className="small-movie-card__link" href='movie-page.html'>
+          {title}
+        </a>
       </h3>
     </article>;
   }
 
-  _onMovieCardEnterHandler() {
+  _movieCardEnterHandler() {
     const {
-      movie,
+      film,
       onItemActivate
     } = this.props;
 
-    this._videoTimeOut = setTimeout(() => onItemActivate(movie), this.props.startTimeOut);
+    this._videoTimeOut = setTimeout(() => onItemActivate(film), this.props.startTimeOut);
   }
 
-  _onMovieCardLeaveHandler() {
+  _movieCardLeaveHandler() {
     const {onItemDisable} = this.props;
 
     onItemDisable();
     clearInterval(this._videoTimeOut);
+  }
+
+  _movieCardClickHandler(evt) {
+    const {
+      film,
+      onMovieCardClick
+    } = this.props;
+
+    evt.preventDefault();
+    onMovieCardClick(film);
   }
 }
 
@@ -69,7 +86,7 @@ SmallMovieCard.defaultProps = {
 };
 
 SmallMovieCard.propTypes = {
-  movie: PropTypes.shape(
+  film: PropTypes.shape(
       {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -84,7 +101,7 @@ SmallMovieCard.propTypes = {
         image: PropTypes.string.isRequired,
       }
   ),
-  onTitleClick: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
   onItemActivate: PropTypes.func.isRequired,
   onItemDisable: PropTypes.func.isRequired,
   startTimeOut: PropTypes.number.isRequired,

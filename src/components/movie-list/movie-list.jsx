@@ -8,23 +8,25 @@ const SmallMovieCardWrapped = withActiveItem(SmallMovieCard);
 
 const MovieList = (props) => {
   const {
-    movies,
+    films,
+    onMovieCardClick
   } = props;
 
   return <div className="catalog__movies-list">
-    {movies.map((movie) =>
+    {films.map((film) =>
       <SmallMovieCardWrapped
-        key = {movie.id}
-        movie = {movie}
-        onTitleClick = {() => {}}
+        key = {film.id}
+        film = {film}
+        onMovieCardClick = {onMovieCardClick}
       />)}
   </div>;
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(
-      SmallMovieCard.propTypes.movie
+  films: PropTypes.arrayOf(
+      SmallMovieCard.propTypes.film
   ).isRequired,
+  onMovieCardClick: SmallMovieCard.propTypes.onMovieCardClick
 };
 
 export default MovieList;

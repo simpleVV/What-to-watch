@@ -9,14 +9,14 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const VideoPlayerPage = (props) => {
   const {
-    movie,
+    film,
   } = props;
 
   const {
     image,
     preview,
     title,
-  } = movie;
+  } = film;
 
   return (
     <Fragment>
@@ -65,7 +65,7 @@ const VideoPlayerPage = (props) => {
 };
 
 VideoPlayerPage.propTypes = {
-  movie: PropTypes.shape(
+  film: PropTypes.shape(
       {
         image: PropTypes.string.isRequired,
         preview: PropTypes.preview,

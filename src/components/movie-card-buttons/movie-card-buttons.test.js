@@ -8,6 +8,7 @@ describe(`The component is rendered correctly`, () => {
     const movieCardButtons = renderer
     .create(<MovieCardButtons
       isMoviePage = {true}
+      onPlayButtonClick = {jest.fn()}
     />)
     .toJSON();
 
@@ -17,6 +18,7 @@ describe(`The component is rendered correctly`, () => {
     const movieCardButtons = renderer
     .create(<MovieCardButtons
       isMoviePage = {false}
+      onPlayButtonClick = {jest.fn()}
     />)
     .toJSON();
 

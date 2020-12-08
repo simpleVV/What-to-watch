@@ -1,48 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {PureComponent} from 'react';
 
-const GenreList = (props) => {
-  const {
-    allGenres,
-    onGenreClick,
-    activeItem,
-    onItemActivate
-  } = props;
+class GenreList extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const activeGenre = (activeItem) ? activeItem : `All genres`;
+    this._genreClickHandler = this._genreClickHandler.bind(this);
+  }
 
-  return (
-    <ul className="catalog__genres-list">
-      {allGenres.map((genre) => {
-        return (
-          <li
-            className={`catalog__genres-item ${(activeGenre === genre) ? `catalog__genres-item--active` : ``}`}
-            key={genre}
-          >
-            <a
-              href="#"
-              className="catalog__genres-link"
-              onClick={(evt) => {
-                evt.preventDefault();
-                onGenreClick(genre);
-                onItemActivate(genre);
-              }}
-            >{genre}</a>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
+  render() {
+    const {
+      allGenres,
+      activeItem,
+      onItemActivate
+    } = this.props;
+
+    const activeGenre = (activeItem) ? activeItem : `All genres`;
+
+    return (
+      <ul className="catalog__genres-list">
+        {allGenres.map((genre) => {
+          return (
+            <li
+              className={`catalog__genres-item ${(activeGenre === genre) ? `catalog__genres-item--active` : ``}`}
+              key={genre}
+            >
+              <a
+                href="#"
+                className="catalog__genres-link"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onItemActivate(genre);
+                  this._genreClickHandler(genre);
+                }}
+              >{genre}</a>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  _genreClickHandler(genre) {
+    const {
+      currentGenre,
+      onGenreClick,
+    } = this.props;
+
+    return (genre === currentGenre) ? null : onGenreClick(genre);
+  }
+}
 
 
 GenreList.propTypes = {
   allGenres: PropTypes.arrayOf(
-      PropTypes.oneOf([`All genres`, `Crime`, `Comedies`, `Dramas`, `Thrillers`, `Horror`])
+      PropTypes.string
   ).isRequired,
-  activeItem: PropTypes.oneOf([`All genres`, `Crime`, `Comedies`, `Dramas`, `Thrillers`, `Horror`]),
+  activeItem: PropTypes.string,
   onGenreClick: PropTypes.func.isRequired,
-  onItemActivate: PropTypes.func.isRequired
+  onItemActivate: PropTypes.func.isRequired,
+  currentGenre: PropTypes.string.isRequired,
 };
 
 export default GenreList;

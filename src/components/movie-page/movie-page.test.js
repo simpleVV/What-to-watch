@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MoviePage from './movie-page.jsx';
+import {MoviePage} from './movie-page.jsx';
 
-const mockMovie = {
+const mockFilm = {
   id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
   genre: `Comedies`,
   title: `Johnny English`,
@@ -32,7 +32,7 @@ const mockMovie = {
   ]
 };
 
-const mockMovies = [
+const mockFilms = [
   {
     id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
     genre: `Comedies`,
@@ -52,11 +52,14 @@ const mockMovies = [
 describe(`The component is rendered correctly`, () => {
   it(`Movie page correctly renders with transferred mock data`, () => {
     const moviePage = renderer
-    .create(<MoviePage
-      movie = {mockMovie}
-      similarMovies = {mockMovies}
-    />)
-    .toJSON();
+    .create(
+        <MoviePage
+          film = {mockFilm}
+          filteredFilms = {mockFilms}
+          onMovieCardClick = {jest.fn()}
+          onPlayButtonClick = {jest.fn()}
+        />
+    ).toJSON();
 
     expect(moviePage).toMatchSnapshot();
   });

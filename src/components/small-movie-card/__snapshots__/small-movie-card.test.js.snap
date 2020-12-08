@@ -3,6 +3,7 @@
 exports[`The component is rendered correctly Movie card correctly renders with transferred mock-movie 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -23,11 +24,10 @@ exports[`The component is rendered correctly Movie card correctly renders with t
   </div>
   <h3
     className="small-movie-card__title"
-    onClick={[MockFunction]}
   >
     <a
       className="small-movie-card__link"
-      href="/films#d90f:fc74:a512:6497:6aab:537:251c:c35a"
+      href="movie-page.html"
     >
       Johnny English
     </a>

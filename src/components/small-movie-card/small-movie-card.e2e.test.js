@@ -6,11 +6,11 @@ import SmallMovieCard from './small-movie-card.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
-const titleClickHandler = jest.fn();
+const movieCardClickHandler = jest.fn();
 const movieCardEnterHandler = jest.fn();
 const movieCardLeaveHandler = jest.fn();
 
-const mockMovie = {
+const mockFilm = {
   id: `d90f:fc74:a512:6497:6aab:537:251c:c35a`,
   genre: `Comedies`,
   title: `Johnny English`,
@@ -19,11 +19,11 @@ const mockMovie = {
 };
 
 describe(`The component interactivity`, () => {
-  it(`Will be called callback, if click on movie title`, () => {
+  it(`Will be called callback, if click on movie card`, () => {
     const movieCard = mount(<SmallMovieCard
       isPlaying = {false}
-      movie = {mockMovie}
-      onTitleClick = {titleClickHandler}
+      film = {mockFilm}
+      onMovieCardClick = {movieCardClickHandler}
       onItemActivate = {movieCardEnterHandler}
       onItemDisable = {movieCardLeaveHandler}
     />);
@@ -31,7 +31,7 @@ describe(`The component interactivity`, () => {
     const title = movieCard.find(`.small-movie-card__title`);
     title.simulate(`click`);
 
-    expect(titleClickHandler).toHaveBeenCalledTimes(1);
+    expect(movieCardClickHandler).toHaveBeenCalledTimes(1);
   });
 
   it(`Will be called callback after 1 second, when user hover on movie card`, () => {
@@ -39,10 +39,10 @@ describe(`The component interactivity`, () => {
 
     const movieCard = mount(<SmallMovieCard
       isPlaying = {true}
-      movie = {mockMovie}
+      film = {mockFilm}
       onItemActivate = {movieCardEnterHandler}
       onItemDisable = {movieCardLeaveHandler}
-      onTitleClick = {titleClickHandler}
+      onMovieCardClick = {movieCardClickHandler}
     />);
 
     const smallMovieCard = movieCard.find(`.small-movie-card`);
@@ -56,10 +56,10 @@ describe(`The component interactivity`, () => {
   it(`Will be called callback, when user leave movie card`, () => {
     const movieCard = mount(<SmallMovieCard
       isPlaying = {false}
-      movie = {mockMovie}
+      film = {mockFilm}
       onItemActivate = {movieCardEnterHandler}
       onItemDisable = {movieCardLeaveHandler}
-      onTitleClick = {titleClickHandler}
+      onMovieCardClick = {movieCardClickHandler}
     />);
 
     const smallMovieCard = movieCard.find(`.small-movie-card`);
