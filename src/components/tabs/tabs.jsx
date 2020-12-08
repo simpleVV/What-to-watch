@@ -86,7 +86,7 @@ class Tabs extends PureComponent {
 
 Tabs.propTypes = {
   id: PropTypes.string.isRequired,
-  genre: PropTypes.oneOf([`Crime`, `Comedies`, `Dramas`, `Thrillers`]).isRequired,
+  genre: PropTypes.string.isRequired,
   activeItem: PropTypes.oneOf([`Overview`, `Details`, `Reviews`]),
   details: MovieOverview.propTypes.details,
   reviews: MovieReviews.propTypes.reviews,

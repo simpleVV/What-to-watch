@@ -8,7 +8,7 @@ describe(`The component is rendered correctly`, () => {
     const catalogShowMore = renderer
     .create(<CatalogShowMore
       onShowMoreButtonClick = {jest.fn()}
-      maxMoviesPerPage = {false}
+      maxFilmsPerPage = {false}
     />)
     .toJSON();
 

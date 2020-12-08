@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import MovieOverview from './movie-overview.jsx';
 
-const mockMovieDetails = {
+const mockFilmDetails = {
   releaseDate: 2014,
   runTime: `1h 39m`,
   bigPoster: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -21,7 +21,7 @@ describe(`The component is rendered correctly`, () => {
   it(`Movie overview correctly renders with transferred mock movie details`, () => {
     const movieOverview = renderer
     .create(<MovieOverview
-      details = {mockMovieDetails}
+      details = {mockFilmDetails}
     />)
     .toJSON();
 

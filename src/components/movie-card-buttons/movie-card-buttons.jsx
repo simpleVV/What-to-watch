@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 const MovieCardButtons = (props) => {
   const {
     isMoviePage,
+    onPlayButtonClick
   } = props;
   return (
     <div className="movie-card__buttons">
       <button
         className="btn btn--play movie-card__button"
         type="button"
-        onClick = {() => {
-          location.pathname = `/player`;
+        onClick = {(evt) => {
+          evt.preventDefault();
+          onPlayButtonClick();
         }}
       >
         <svg viewBox="0 0 19 19" width="19" height="19">
@@ -31,7 +33,8 @@ const MovieCardButtons = (props) => {
 };
 
 MovieCardButtons.propTypes = {
-  isMoviePage: PropTypes.bool
+  isMoviePage: PropTypes.bool,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MovieCardButtons;

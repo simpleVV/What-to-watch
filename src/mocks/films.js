@@ -341,4 +341,24 @@ const films = [
   }
 ];
 
-export default films;
+const emptyFilm = {
+  id: `0`,
+  genre: ``,
+  title: `Is loading...`,
+  image: ``,
+  preview: ``,
+  details: {
+    releaseDate: 0,
+    runTime: 0,
+    bigPoster: ``,
+    poster: ``,
+    description: ``,
+    ratingLevel: ``,
+    ratingScore: 0,
+    ratingCount: 0,
+    director: ``,
+    starring: []
+  }
+};
+
+export {films, emptyFilm};

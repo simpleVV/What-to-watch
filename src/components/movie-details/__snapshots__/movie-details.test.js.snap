@@ -85,7 +85,7 @@ exports[`The component is rendered correctly Movie details correctly renders wit
       <span
         className="movie-card__details-value"
       >
-        1h 39m
+        300
       </span>
     </p>
     <p

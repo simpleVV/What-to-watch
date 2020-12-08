@@ -9,6 +9,7 @@ describe(`The component is rendered correctly`, () => {
     const genreList = renderer
     .create(<GenreList
       allGenres = {mockGenres}
+      currentGenre = {`Horror`}
       onGenreClick = {jest.fn()}
       onItemActivate = {jest.fn()}
       activeItem = {`All genres`}
