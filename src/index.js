@@ -4,7 +4,10 @@ import {Provider} from 'react-redux';
 import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
-import {Operation} from './reducer/data/data-action-creator.js';
+import {Operation as DataOperation} from './reducer/data/data-action-creator.js';
+import {Operation as UserOperation} from './reducer/user/user-action-creator.js';
+import {ActionCreator as UserActionCreator} from './reducer/user/user-action-creator.js';
+import {AuthorizationStatus} from './reducer/user/user.js';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {
   createStore,
@@ -13,7 +16,11 @@ import {
 
 import App from './components/app/app.jsx';
 
-const api = createAPI(() => {});
+const onUnauthorized = () =>{
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -22,8 +29,9 @@ const store = createStore(
     )
 );
 
-store.dispatch(Operation.loadFilms());
-store.dispatch(Operation.loadPromo());
+store.dispatch(UserOperation.checkAuth);
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadPromo());
 
 ReactDom.render(
     <Provider store = {store}>

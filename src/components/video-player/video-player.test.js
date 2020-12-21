@@ -22,15 +22,17 @@ describe(`The component is rendered correctly`, () => {
 
   it(`Video player correctly renders, when the video is played`, () => {
     const videoPlayer = renderer
-      .create(<VideoPlayer
-        renderVideo = {jest.fn()}
-        onPlaybackActivate = {jest.fn()}
-        onFullScreenActivate = {jest.fn()}
-        isPlaying = {true}
-        duration = {20}
-        progress = {7}
-        title = {`Snatch`}
-      />)
+      .create(
+          <VideoPlayer
+            renderVideo = {jest.fn()}
+            onPlaybackActivate = {jest.fn()}
+            onFullScreenActivate = {jest.fn()}
+            isPlaying = {true}
+            duration = {20}
+            progress = {7}
+            title = {`Snatch`}
+          />
+      )
       .toJSON();
 
     expect(videoPlayer).toMatchSnapshot();

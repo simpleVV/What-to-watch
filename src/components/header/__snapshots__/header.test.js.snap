@@ -1,9 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The component is rendered correctly Header correctly renders with transferred mock children 1`] = `
+exports[`The component is rendered correctly Header correctly renders with transferred mock children and user info 1`] = `
 <header
   className="page-header movie-card__head"
 >
   <div />
+  <div
+    className="user-block"
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <img
+        alt="User avatar"
+        height="63"
+        src="https://htmlacademy-react-3.appspot.com/imgavatar.jpg"
+        width="63"
+      />
+    </div>
+  </div>
 </header>
 `;

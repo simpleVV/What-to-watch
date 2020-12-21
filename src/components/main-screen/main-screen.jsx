@@ -1,18 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/app-state/state-action-creator.js';
-import {
-  getAllGenres,
-  getCurrentGenre,
-  getFilmsPerPage,
-  getFilteredFilms,
-  getIsMaxFilmNumber
-} from '../../reducer/app-state/selectors.js';
-import {
-  getFilms,
-  getPromoFilm
-} from '../../reducer/data/selectors.js';
+import {ActionCreator as AppStateActionCreator} from '../../reducer/app-state/state-action-creator.js';
+import {getPromoFilm} from '../../reducer/data/selectors.js';
 
 import Header from '../header/header.jsx';
 import Logo from '../logo/logo.jsx';
@@ -28,16 +18,7 @@ const GenreListWrapped = withActiveItem(GenreList);
 const MainScreen = (props) => {
   const {
     promoFilm,
-    allGenres,
-    filteredFilms,
-    fullFilmList,
-    onShowMoreButtonClick,
-    onMovieCardClick,
     onPlayButtonClick,
-    filmsPerPage,
-    onFilterItemClick,
-    currentGenre,
-    isMaxFilmNumber
   } = props;
 
   const {
@@ -50,9 +31,6 @@ const MainScreen = (props) => {
     poster,
     releaseDate
   } = promoFilm.details;
-
-  const currentFilms = [...filteredFilms];
-  currentFilms.length = filmsPerPage;
 
   return (
     <main>
@@ -95,20 +73,11 @@ const MainScreen = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreListWrapped
-            allGenres = {allGenres}
-            currentGenre = {currentGenre}
-            onGenreClick = {onFilterItemClick}
-          />
-          <MovieList
-            films = {currentFilms}
-            onMovieCardClick = {onMovieCardClick}
-          />
+          <GenreListWrapped/>
 
-          <CatalogShowMore
-            maxFilmsPerPage = {isMaxFilmNumber}
-            onShowMoreButtonClick={() => onShowMoreButtonClick(filmsPerPage, fullFilmList.length)}
-          />
+          <MovieList/>
+
+          <CatalogShowMore/>
         </section>
 
         <PageFooter/>
@@ -135,41 +104,16 @@ MainScreen.propTypes = {
       }
   ),
   onPlayButtonClick: MovieCardButtons.propTypes.onPlayButtonClick,
-  onMovieCardClick: MovieList.propTypes.onMovieCardClick,
-  allGenres: GenreList.propTypes.allGenres,
-  filteredFilms: MovieList.propTypes.films,
-  fullFilmList: MovieList.propTypes.films,
-  onShowMoreButtonClick: CatalogShowMore.propTypes.onShowMoreButtonClick,
-  filmsPerPage: PropTypes.number.isRequired,
-  onFilterItemClick: PropTypes.func.isRequired,
-  currentGenre: GenreList.propTypes.currentGenre,
-  isMaxFilmNumber: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   promoFilm: getPromoFilm(state),
-  fullFilmList: getFilms(state),
-  filteredFilms: getFilteredFilms(state),
-  allGenres: getAllGenres(state),
-  currentGenre: getCurrentGenre(state),
-  filmsPerPage: getFilmsPerPage(state),
-  isMaxFilmNumber: getIsMaxFilmNumber(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterItemClick: (genre) => {
-    dispatch(ActionCreator.changeGenre(genre));
-  },
-  onShowMoreButtonClick: (currentFilms, allFilms) => {
-    dispatch(ActionCreator.showMoreFilms(currentFilms, allFilms));
-  },
-  onMovieCardClick: (film) => {
-    dispatch(ActionCreator.selectFilm(film));
-    dispatch(ActionCreator.changeGenre(film.genre));
-  },
   onPlayButtonClick: (film) => {
-    dispatch(ActionCreator.selectFilm(film));
-    dispatch(ActionCreator.playFilm(true));
+    dispatch(AppStateActionCreator.selectFilm(film));
+    dispatch(AppStateActionCreator.playFilm(true));
   }
 });
 

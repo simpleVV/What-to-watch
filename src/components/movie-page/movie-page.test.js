@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 import {MoviePage} from './movie-page.jsx';
 
@@ -49,17 +51,33 @@ const mockFilms = [
   }
 ];
 
+const mockStore = createStore(() => ({
+  APP_STATE: {
+    currentGenre: `All genres`,
+    filmsPerPage: 8
+  },
+  DATA: {
+    fullFilmList: mockFilms,
+    filteredFilms: mockFilms,
+  },
+  USER: {
+    userInfo: null
+  }
+}));
+
 describe(`The component is rendered correctly`, () => {
   it(`Movie page correctly renders with transferred mock data`, () => {
     const moviePage = renderer
     .create(
-        <MoviePage
-          film = {mockFilm}
-          filteredFilms = {mockFilms}
-          onMovieCardClick = {jest.fn()}
-          onPlayButtonClick = {jest.fn()}
-        />
-    ).toJSON();
+        <Provider store = {mockStore}>
+          <MoviePage
+            film = {mockFilm}
+            onMovieCardClick = {jest.fn()}
+            onPlayButtonClick = {jest.fn()}
+          />
+        </Provider>
+    )
+    .toJSON();
 
     expect(moviePage).toMatchSnapshot();
   });

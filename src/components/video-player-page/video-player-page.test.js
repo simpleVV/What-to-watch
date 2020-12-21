@@ -12,10 +12,12 @@ const mockFilm = {
 describe(`The component is rendered correctly`, () => {
   it(`Video player page correctly renders with transferred mock data`, () => {
     const videoPlayerPage = renderer
-    .create(<VideoPlayerPage
-      film = {mockFilm}
-      isPlaying = {true}
-    />)
+    .create(
+        <VideoPlayerPage
+          film = {mockFilm}
+          isPlaying = {true}
+        />
+    )
     .toJSON();
 
     expect(videoPlayerPage).toMatchSnapshot();

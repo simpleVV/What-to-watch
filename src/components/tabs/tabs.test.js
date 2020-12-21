@@ -28,14 +28,16 @@ const mockReviews = [
 describe(`The component is rendered correctly`, () => {
   it(`Tabs correctly renders with transferred mock data`, () => {
     const tabs = renderer
-    .create(<Tabs
-      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
-      activeItem = {`Overview`}
-      genre = {`Crime`}
-      details = {mockDetails}
-      reviews = {mockReviews}
-      onItemActivate = {jest.fn()}
-    />)
+    .create(
+        <Tabs
+          id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
+          activeItem = {`Overview`}
+          genre = {`Crime`}
+          details = {mockDetails}
+          reviews = {mockReviews}
+          onItemActivate = {jest.fn()}
+        />
+    )
     .toJSON();
 
     expect(tabs).toMatchSnapshot();
