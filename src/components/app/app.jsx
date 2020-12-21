@@ -6,10 +6,14 @@ import {
   getSelectedFilm,
   getIsFilmPlay
 } from '../../reducer/app-state/selectors.js';
+import {Operation as UserOperation} from '../../reducer/user/user-action-creator.js';
+import {AuthorizationStatus} from '../../reducer/user/user.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 import MainScreen from '../main-screen/main-screen.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 import VideoPlayerPage from '../video-player-page/video-player-page.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -26,23 +30,27 @@ class App extends PureComponent {
     );
   }
 
-  _renderMoviePage() {
-    const {selectedFilm} = this.props;
-
+  _renderSignInScreen() {
+    const {login} = this.props;
     return (
-      <MoviePage
-        film= {selectedFilm}
+      <SignIn
+        login = {login}
       />
     );
   }
 
-  _renderVideoPlayerPage() {
-    const {
-      selectedFilm
-    } = this.props;
+  _renderMoviePage(film) {
+    return (
+      <MoviePage
+        film= {film}
+      />
+    );
+  }
+
+  _renderVideoPlayerPage(film) {
     return (
       <VideoPlayerPage
-        film = {selectedFilm}
+        film = {film}
       />
     );
   }
@@ -50,15 +58,20 @@ class App extends PureComponent {
   _renderApp() {
     const {
       selectedFilm,
-      isFilmPlay
+      isFilmPlay,
+      authorizationStatus,
     } = this.props;
 
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return this._renderSignInScreen();
+    }
+
     if (isFilmPlay) {
-      return this._renderVideoPlayerPage();
+      return this._renderVideoPlayerPage(selectedFilm);
     }
 
     if (selectedFilm) {
-      return this._renderMoviePage();
+      return this._renderMoviePage(selectedFilm);
     }
 
 
@@ -82,13 +95,20 @@ App.propTypes = {
             })
       }
   ),
-  isFilmPlay: PropTypes.bool.isRequired
+  isFilmPlay: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   selectedFilm: getSelectedFilm(state),
-  isFilmPlay: getIsFilmPlay(state)
+  isFilmPlay: getIsFilmPlay(state),
+  authorizationStatus: getAuthorizationStatus(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (userData) => dispatch(UserOperation.login(userData))
 });
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

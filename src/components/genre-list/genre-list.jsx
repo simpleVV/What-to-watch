@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator as AppStateActionCreator} from '../../reducer/app-state/state-action-creator.js';
+import {
+  getAllGenres,
+  getCurrentGenre
+} from '../../reducer/app-state/selectors.js';
 
 class GenreList extends PureComponent {
   constructor(props) {
@@ -45,10 +51,10 @@ class GenreList extends PureComponent {
   _genreClickHandler(genre) {
     const {
       currentGenre,
-      onGenreClick,
+      onFilterItemClick,
     } = this.props;
 
-    return (genre === currentGenre) ? null : onGenreClick(genre);
+    return (genre === currentGenre) ? null : onFilterItemClick(genre);
   }
 }
 
@@ -58,9 +64,21 @@ GenreList.propTypes = {
       PropTypes.string
   ).isRequired,
   activeItem: PropTypes.string,
-  onGenreClick: PropTypes.func.isRequired,
+  onFilterItemClick: PropTypes.func.isRequired,
   onItemActivate: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
 };
 
-export default GenreList;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  allGenres: getAllGenres(state),
+  currentGenre: getCurrentGenre(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterItemClick: (genre) => {
+    dispatch(AppStateActionCreator.changeGenre(genre));
+  }
+});
+
+export {GenreList};
+export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

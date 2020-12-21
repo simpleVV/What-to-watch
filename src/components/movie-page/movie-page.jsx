@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Fragment} from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/app-state/state-action-creator.js';
-import {getFilteredFilms} from '../../reducer/app-state/selectors.js';
+import {ActionCreator as AppStateActionCreator} from '../../reducer/app-state/state-action-creator.js';
 
 import Tabs from '../tabs/tabs.jsx';
 import Header from '../header/header.jsx';
@@ -18,9 +17,7 @@ const MovieListWrapped = withActiveItem(MovieList);
 
 const MoviePage = (props) => {
   const {
-    onMovieCardClick,
     onPlayButtonClick,
-    filteredFilms,
     film
   } = props;
 
@@ -89,10 +86,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MovieListWrapped
-            films = {filteredFilms}
-            onMovieCardClick = {onMovieCardClick}
-          />
+          <MovieListWrapped/>
 
         </section>
 
@@ -104,8 +98,6 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  filteredFilms: MovieList.propTypes.films,
-  onMovieCardClick: PropTypes.func.isRequired,
   onPlayButtonClick: MovieCardButtons.propTypes.onPlayButtonClick,
   film: PropTypes.shape(
       {
@@ -124,16 +116,11 @@ MoviePage.propTypes = {
   )
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  filteredFilms: getFilteredFilms(state),
-});
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps);
 
 const mapDispatchToProps = (dispatch) => ({
-  onMovieCardClick: (film) => {
-    dispatch(ActionCreator.selectFilm(film));
-  },
   onPlayButtonClick: () => {
-    dispatch(ActionCreator.playFilm(true));
+    dispatch(AppStateActionCreator.playFilm(true));
   }
 });
 

@@ -13,6 +13,17 @@ export const getFilteredFilms = createSelector(
     (films, genre) => (genre === `All genres`) ? films : films.filter((film) => film.genre === genre)
 );
 
+export const getSimilarFilms = createSelector(
+    getFilteredFilms,
+    getFilmsPerPage,
+    (films, length) => {
+      const similarFilms = [...films];
+      similarFilms.length = (films.length < length) ? films.length : length;
+
+      return similarFilms;
+    }
+);
+
 export const getAllGenres = createSelector(
     getFilms,
     (films) => {
@@ -27,7 +38,12 @@ export const getAllGenres = createSelector(
     }
 );
 
-export const getIsMaxFilmNumber = createSelector(
+export const getNumberAllFilms = createSelector(
+    getFilms,
+    (films) => films.length
+);
+
+export const getIsMaxNumberFilms = createSelector(
     getFilmsPerPage,
     getFilteredFilms,
     (number, films) => (number >= films.length) ? true : false

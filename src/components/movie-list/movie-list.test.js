@@ -1,7 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-import MovieList from './movie-list.jsx';
+import {MovieList} from './movie-list.jsx';
 
 const mockFilms = [
   {
@@ -34,16 +36,19 @@ const mockFilms = [
   }
 ];
 
+const mockStore = createStore(() => {});
+
 
 describe(`The component is rendered correctly`, () => {
   it(`Movie list correctly renders with transferred mock-movies`, () => {
     const movieList = renderer
-    .create(<MovieList
-      films = {mockFilms}
-      onItemActivate = {jest.fn()}
-      onItemDisable = {jest.fn()}
-      onMovieCardClick = {jest.fn()}
-    />)
+    .create(
+        <Provider store = {mockStore}>
+          <MovieList
+            films = {mockFilms}
+          />
+        </Provider>
+    )
     .toJSON();
 
     expect(movieList).toMatchSnapshot();

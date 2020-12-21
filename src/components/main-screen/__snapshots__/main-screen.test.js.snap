@@ -45,6 +45,16 @@ exports[`The component is rendered correctly Main screen correctly renders with 
           </span>
         </a>
       </div>
+      <div
+        className="user-block"
+      >
+        <a
+          className="user-block__link"
+          href="sign-in.html"
+        >
+          Sign in
+        </a>
+      </div>
     </header>
     <div
       className="movie-card__wrap"
@@ -160,7 +170,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
             href="#"
             onClick={[Function]}
           >
-            Crime
+            Comedies
           </a>
         </li>
         <li
@@ -171,7 +181,7 @@ exports[`The component is rendered correctly Main screen correctly renders with 
             href="#"
             onClick={[Function]}
           >
-            Dramas
+            Crime
           </a>
         </li>
       </ul>

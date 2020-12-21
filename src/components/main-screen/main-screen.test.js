@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 import {MainScreen} from './main-screen.jsx';
 
@@ -43,24 +45,34 @@ const mockFilm = {
   }
 };
 
+const mockStore = createStore(() => ({
+  APP_STATE: {
+    currentGenre: `All genres`,
+    allGenres: [`All genres`, `Crime`, `Dramas`],
+    filmsPerPage: 8
+  },
+  DATA: {
+    fullFilmList: mockFilms,
+    filteredFilms: mockFilms,
+    promoFilm: mockFilm
+  },
+  USER: {
+    userInfo: null
+  }
+}));
+
 describe(`The component is rendered correctly`, () => {
   it(`Main screen correctly renders with transferred mock-movies title`, () => {
     const mainScreen = renderer
     .create(
-        <MainScreen
-          promoFilm = {mockFilm}
-          currentGenre = {`All genres`}
-          allGenres = {[`All genres`, `Crime`, `Dramas`]}
-          fullFilmList = {mockFilms}
-          filteredFilms = {mockFilms}
-          filmsPerPage = {8}
-          onMovieCardClick = {jest.fn()}
-          onShowMoreButtonClick = {jest.fn()}
-          onFilterItemClick = {jest.fn()}
-          onPlayButtonClick = {jest.fn()}
-          isMaxFilmNumber = {true}
-        />
-    ).toJSON();
+        <Provider store = {mockStore}>
+          <MainScreen
+            promoFilm = {mockFilm}
+            onPlayButtonClick = {jest.fn()}
+          />
+        </Provider>
+    )
+    .toJSON();
 
     expect(mainScreen).toMatchSnapshot();
   });

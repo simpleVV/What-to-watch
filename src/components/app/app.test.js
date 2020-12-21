@@ -62,6 +62,10 @@ const mockStore = createStore(() => ({
     fullFilmList: mockFilms,
     filteredFilms: mockFilms,
     promoFilm: mockFilm
+  },
+  USER: {
+    authorizationStatus: `NO_AUTH`,
+    userInfo: null
   }
 }));
 
@@ -72,9 +76,12 @@ describe(`The component is rendered correctly`, () => {
         <Provider store = {mockStore}>
           <App
             isFilmPlay = {false}
+            authorizationStatus = {`AUTH`}
+            login = {jest.fn()}
           />
         </Provider>
-    ).toJSON();
+    )
+    .toJSON();
 
     expect(app).toMatchSnapshot();
   });
@@ -86,9 +93,46 @@ describe(`The component is rendered correctly`, () => {
           <App
             selectedFilm = {mockFilm}
             isFilmPlay = {false}
+            authorizationStatus = {`AUTH`}
+            login = {jest.fn()}
           />
         </Provider>
-    ).toJSON();
+    )
+    .toJSON();
+
+    expect(app).toMatchSnapshot();
+  });
+
+  it(`App correctly render Sign in screen`, () => {
+    const app = renderer
+    .create(
+        <Provider store = {mockStore}>
+          <App
+            selectedFilm = {mockFilm}
+            isFilmPlay = {false}
+            authorizationStatus = {`NO_AUTH`}
+            login = {jest.fn()}
+          />
+        </Provider>
+    )
+    .toJSON();
+
+    expect(app).toMatchSnapshot();
+  });
+
+  it(`App correctly render Video player page`, () => {
+    const app = renderer
+    .create(
+        <Provider store = {mockStore}>
+          <App
+            selectedFilm = {mockFilm}
+            isFilmPlay = {true}
+            authorizationStatus = {`AUTH`}
+            login = {jest.fn()}
+          />
+        </Provider>
+    )
+    .toJSON();
 
     expect(app).toMatchSnapshot();
   });

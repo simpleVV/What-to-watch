@@ -6,7 +6,9 @@ import Logo from './logo.jsx';
 describe(`The component is rendered correctly`, () => {
   it(`Logo correctly renders`, () => {
     const logo = renderer
-    .create(<Logo/>)
+    .create(
+        <Logo/>
+    )
     .toJSON();
 
     expect(logo).toMatchSnapshot();

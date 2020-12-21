@@ -26,10 +26,12 @@ describe(`The component with video is rendered correctly`, () => {
     const MockComponentWrapped = withVideo(MockComponent);
 
     const mockComponentWrapped = renderer
-    .create(<MockComponentWrapped
-      isPlaying = {false}
-      style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
-    />)
+    .create(
+        <MockComponentWrapped
+          isPlaying = {false}
+          style = {{width: `100%`, height: `100%`, objectFit: `fill`}}
+        />
+    )
     .toJSON();
 
     expect(mockComponentWrapped).toMatchSnapshot();

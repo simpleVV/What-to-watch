@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import GenreList from './genre-list.jsx';
+import {GenreList} from './genre-list.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -12,12 +12,13 @@ describe(`The component interactivity`, () => {
   it(`Will choose current genre, if user click on it`, () => {
     const genreClickHandler = jest.fn();
     const itemActiveHandler = jest.fn();
-    const genreList = mount(<GenreList
-      allGenres = {mockGenres}
-      currentGenre = {`All genres`}
-      onGenreClick = {genreClickHandler}
-      onItemActivate = {itemActiveHandler}
-    />);
+    const genreList = mount(
+        <GenreList
+          allGenres = {mockGenres}
+          currentGenre = {`All genres`}
+          onFilterItemClick = {genreClickHandler}
+          onItemActivate = {itemActiveHandler}
+        />);
 
     const genre = genreList.find(`.catalog__genres-link`).at(1);
 
@@ -30,12 +31,13 @@ describe(`The component interactivity`, () => {
   it(`Will activate item, if user click on it`, () => {
     const genreClickHandler = jest.fn();
     const itemActiveHandler = jest.fn();
-    const genreList = mount(<GenreList
-      allGenres = {mockGenres}
-      currentGenre = {`Horror`}
-      onGenreClick = {genreClickHandler}
-      onItemActivate = {itemActiveHandler}
-    />);
+    const genreList = mount(
+        <GenreList
+          allGenres = {mockGenres}
+          currentGenre = {`Horror`}
+          onFilterItemClick = {genreClickHandler}
+          onItemActivate = {itemActiveHandler}
+        />);
 
     const genre = genreList.find(`.catalog__genres-link`).at(2);
 

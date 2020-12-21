@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator as AppStateActionCreator} from '../../reducer/app-state/state-action-creator.js';
 
 import withVideo from '../../hocs/with-video/with-video.js';
 import SmallCardImage from '../small-card-image/small-card-image.jsx';
@@ -108,4 +110,13 @@ SmallMovieCard.propTypes = {
   muted: PropTypes.bool.isRequired,
 };
 
-export default SmallMovieCard;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps);
+const mapDispatchToProps = (dispatch) => ({
+  onMovieCardClick: (film) => {
+    dispatch(AppStateActionCreator.selectFilm(film));
+    dispatch(AppStateActionCreator.changeGenre(film.genre));
+  }
+});
+
+export {SmallMovieCard};
+export default connect(mapStateToProps, mapDispatchToProps)(SmallMovieCard);

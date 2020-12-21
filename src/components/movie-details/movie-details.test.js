@@ -20,11 +20,13 @@ const mockDetails = {
 describe(`The component is rendered correctly`, () => {
   it(`Movie details correctly renders with transferred mock data`, () => {
     const moviePageDetails = renderer
-    .create(<MovieDetails
-      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
-      genre = {`Comedies`}
-      details = {mockDetails}
-    />)
+    .create(
+        <MovieDetails
+          id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
+          genre = {`Comedies`}
+          details = {mockDetails}
+        />
+    )
     .toJSON();
 
     expect(moviePageDetails).toMatchSnapshot();

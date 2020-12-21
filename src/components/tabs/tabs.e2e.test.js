@@ -31,14 +31,16 @@ const mockReviews = [
 
 describe(`The component interactivity`, () => {
   it(`Will switch on tab, if user click on it`, () => {
-    const tabs = mount(<Tabs
-      id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
-      activeItem = {`Overview`}
-      genre = {`Crime`}
-      details = {mockDetails}
-      reviews = {mockReviews}
-      onItemActivate = {tabClickHandler}
-    />);
+    const tabs = mount(
+        <Tabs
+          id = {`d90f:fc74:a512:6497:6aab:537:251c:c35a`}
+          activeItem = {`Overview`}
+          genre = {`Crime`}
+          details = {mockDetails}
+          reviews = {mockReviews}
+          onItemActivate = {tabClickHandler}
+        />
+    );
 
     const tab = tabs.find(`.movie-nav__link`).at(1);
 

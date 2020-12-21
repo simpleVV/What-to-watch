@@ -13,9 +13,11 @@ const mockReview = {
 describe(`The component is rendered correctly`, () => {
   it(`Review correctly renders with transferred mock review`, () => {
     const review = renderer
-    .create(<Review
-      review = {mockReview}
-    />)
+    .create(
+        <Review
+          review = {mockReview}
+        />
+    )
     .toJSON();
 
     expect(review).toMatchSnapshot();

@@ -20,9 +20,11 @@ const mockFilmDetails = {
 describe(`The component is rendered correctly`, () => {
   it(`Movie overview correctly renders with transferred mock movie details`, () => {
     const movieOverview = renderer
-    .create(<MovieOverview
-      details = {mockFilmDetails}
-    />)
+    .create(
+        <MovieOverview
+          details = {mockFilmDetails}
+        />
+    )
     .toJSON();
 
     expect(movieOverview).toMatchSnapshot();

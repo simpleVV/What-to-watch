@@ -43,10 +43,12 @@ describe(`The component interactivity`, () => {
   it(`Turn on video`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
     const onPlayButtonClickHandler = jest.fn();
-    const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {false}
-      onPlaybackActivate = {onPlayButtonClickHandler}
-    />);
+    const mockVideoPlayerWrapped = mount(
+        <MockVideoPlayerWrapped
+          isPlaying = {false}
+          onPlaybackActivate = {onPlayButtonClickHandler}
+        />
+    );
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
 
@@ -62,10 +64,12 @@ describe(`The component interactivity`, () => {
   it(`Turn off video`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
     const onPlayButtonClickHandler = jest.fn();
-    const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {true}
-      onPlaybackActivate = {onPlayButtonClickHandler}
-    />);
+    const mockVideoPlayerWrapped = mount(
+        <MockVideoPlayerWrapped
+          isPlaying = {true}
+          onPlaybackActivate = {onPlayButtonClickHandler}
+        />
+    );
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
 
@@ -81,11 +85,13 @@ describe(`The component interactivity`, () => {
   it(`reset video`, () => {
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
     const onPlayButtonClickHandler = jest.fn();
-    const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {false}
-      preview = {`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
-      onPlaybackActivate = {onPlayButtonClickHandler}
-    />);
+    const mockVideoPlayerWrapped = mount(
+        <MockVideoPlayerWrapped
+          isPlaying = {false}
+          preview = {`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
+          onPlaybackActivate = {onPlayButtonClickHandler}
+        />
+    );
 
     const {_videoRef} = mockVideoPlayerWrapped.instance();
 
@@ -102,10 +108,12 @@ describe(`The component interactivity`, () => {
     HTMLVideoElement.prototype.requestFullscreen = jest.fn();
 
     const MockVideoPlayerWrapped = withVideo(MockVideoPlayer);
-    const mockVideoPlayerWrapped = mount(<MockVideoPlayerWrapped
-      isPlaying = {false}
-      onFullScreenActivate = {jest.fn()}
-    />);
+    const mockVideoPlayerWrapped = mount(
+        <MockVideoPlayerWrapped
+          isPlaying = {false}
+          onFullScreenActivate = {jest.fn()}
+        />
+    );
 
     const button = mockVideoPlayerWrapped.find(`.fullScreen`);
 

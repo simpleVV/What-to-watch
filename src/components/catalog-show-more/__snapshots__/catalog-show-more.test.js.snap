@@ -6,7 +6,7 @@ exports[`The component is rendered correctly The show more button is renders cor
 >
   <button
     className="catalog__button "
-    onClick={[MockFunction]}
+    onClick={[Function]}
     type="button"
   >
     Show more
