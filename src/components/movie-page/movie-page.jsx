@@ -39,7 +39,10 @@ const MoviePage = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={bigPoster} alt={title}/>
+            <img
+              src={bigPoster}
+              alt={title}
+            />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -59,6 +62,7 @@ const MoviePage = (props) => {
               <MovieCardButtons
                 onPlayButtonClick = {onPlayButtonClick}
                 isMoviePage = {true}
+                authorizationStatus = {`AUTH`}
               />
             </div>
           </div>
@@ -68,7 +72,12 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster} alt={title} width="218" height="327" />
+              <img
+                src={poster}
+                alt={title}
+                width="218"
+                height="327"
+              />
             </div>
 
             <TabsWrapped

@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const MovieCardButtons = (props) => {
   const {
     isMoviePage,
-    onPlayButtonClick
+    onPlayButtonClick,
+    authorizationStatus
   } = props;
   return (
     <div className="movie-card__buttons">
@@ -27,14 +28,18 @@ const MovieCardButtons = (props) => {
         </svg>
         <span>My list</span>
       </button>
-      {isMoviePage ? <a href="add-review.html" className="btn movie-card__button">Add review</a> : null}
+      {isMoviePage && authorizationStatus === `AUTH` ?
+        <a href="add-review.html" className="btn movie-card__button">Add review</a>
+        :
+        null}
     </div>
   );
 };
 
 MovieCardButtons.propTypes = {
   isMoviePage: PropTypes.bool,
-  onPlayButtonClick: PropTypes.func.isRequired
+  authorizationStatus: PropTypes.string,
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 export default MovieCardButtons;

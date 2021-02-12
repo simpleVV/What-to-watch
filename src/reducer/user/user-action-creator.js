@@ -47,8 +47,8 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.saveUserInfo(response.data));
-      }).
-      catch(() => {
+      })
+      .catch(() => {
         dispatch(ActionCreator.createErrorMassege());
       });
   }
